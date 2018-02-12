@@ -1,5 +1,6 @@
 package pl.amelco.crm.service;
 
+import java.security.Principal;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -26,7 +27,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User findByUserName(String username) {
+	public User findByUsername(String username) {
 		return userRepository.findByUsername(username);
 	}
 
@@ -36,7 +37,12 @@ public class UserServiceImpl implements UserService {
 		user.setEnabled(1);
 		Role userRole = roleRepository.findByName("ROLE_USER");
 		user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
-//		System.out.println(user.getRoles().size());
 		userRepository.save(user);
+	}
+	
+	public User getLoggedInUser(Principal principal) {
+		String name = principal.getName();
+		User result = userRepository.findByUsername(name);
+		return result;
 	}
 }

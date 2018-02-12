@@ -22,28 +22,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	DataSource	dataSource;
 	
 	
-//	@Override
-//	public	void	configure(AuthenticationManagerBuilder	auth)	throws	Exception	{
-////					auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passwordEncoder());
-//		
-//					auth.inMemoryAuthentication()
-//									.withUser("user").password("user").roles("USER")
-//									.and()
-//									.withUser("admin").password("admin").roles("ADMIN")
-//									.and()
-//									.withUser("moderator").password("moderator").roles("MODERATOR");
-//	}
-	
 	@Override
 	protected	void	configure(HttpSecurity	http)	throws	Exception	{
 					http.authorizeRequests()
-									.antMatchers("/all").permitAll()
-									.antMatchers("/product").authenticated()
-									.antMatchers("/restricted").hasRole("ADMIN")
-									.antMatchers("/moderator/**").hasAnyRole("MODERATOR")
+//									.antMatchers("/all").permitAll()
+//									.antMatchers("/product").authenticated()
+//									.antMatchers("/restricted").hasRole("ADMIN")
+//									.antMatchers("/moderator/**").hasAnyRole("MODERATOR")
 									.and().formLogin()
 					                .loginPage("/login")
-									.defaultSuccessUrl("/")
+									.defaultSuccessUrl("/dashboard")
 					                .permitAll()
 					                .and()
 					                .logout()

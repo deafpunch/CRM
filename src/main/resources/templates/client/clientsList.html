@@ -1,0 +1,31 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<meta charset="UTF-8"></meta>
+<head>
+</head>
+<body>
+<div th:if="${message != null}">
+<p th:text="${message}">Message from controller</p>
+	</div>
+	<a th:href="@{/dashboard/addclient}">Add new client</a><br></br>
+	<br></br>
+<table border="1" cellpadding="10">
+<tr>
+<th>Clients ID</th>
+<th>Company name</th>
+<th colspan="2">Action</th>
+</tr>
+<th:block th:each="client : ${clients}">
+    <tr>
+    	<td th:text="${client.id}">Clients company ID</td>
+        <td th:text="${client.clientName}">Clients company name</td>
+        <td><a th:href="@{/dashboard/client/{id}/details(id=${client.id})}">Details</a></td> 
+        <td><a th:href="@{/dashboard/client/{id}/copy(id=${client.id})}">Copy to new record</a></td>
+    </tr>
+</th:block>
+</table>
+<br></br>
+<a th:href="@{/dashboard}">Go back to user dashboard</a>
+</body>
+</html>

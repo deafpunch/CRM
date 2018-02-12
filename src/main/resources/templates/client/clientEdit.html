@@ -1,0 +1,39 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<meta charset="UTF-8"></meta>
+<head>
+</head>
+<body>
+<h3>Edit client details</h3>
+<br></br>
+ <form action="#" th:action="@{/dashboard/client/{id}/edit(id=${client.id})}" th:object="${client}" method="post">
+    	<label for="clientName">Client name(*): </label>
+    	<p><input type="text" name="clientName" th:value="*{clientName}" placeholder="${client.clientName}" /></p>
+    	<label for="address">Company address: </label>
+    	<p><input type="text" name="address" th:value="*{address}" placeholder="${client.address}" /></p>
+    	<label for="phoneNumber">Contact phone number: </label>
+    	<p><input type="text" name="phoneNumber" th:value="*{phoneNumber}" placeholder="${client.phoneNumber}"/></p>
+    	<label for="email">Contact e-mail address(*): </label>
+    	<p><input type="text" name="email" th:value="*{email}" placeholder="${client.email}"/></p>
+    	<label for="companySize">Company size(*):</label>
+    	<p><select th:field="*{companySize}" th:selected="${client.companySize.size}" name="companySize">
+  		<option th:each="size : ${sizes}" 
+          th:value="${size.id}" 
+          th:utext="${size.size}">Company size</option>
+		</select></p>
+		<br></br>
+    	<p>(*) - required fields</p>
+		<p>
+		<label for="notes">Notes: </label></p>
+		<p><textarea name = "notes" rows = "20" cols = "80" th:field = "${client.notes}">Notes</textarea></p>
+    	
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+
+
+
+<br></br>
+<a th:href="@{/dashboard/clientslist}">Go back to clients list</a><br></br>
+<a th:href="@{/dashboard}">Go back to user dashboard</a>		
+</body>
+</html>

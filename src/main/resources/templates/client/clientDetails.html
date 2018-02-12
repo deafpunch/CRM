@@ -1,0 +1,65 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<meta charset="UTF-8"></meta>
+<head>
+</head>
+<body>
+<div th:if="${message != null}">
+<p th:text="${message}">Update message</p>
+	</div>
+	
+	<br></br>
+	<table border="1" cellpadding="10">
+		<tr>
+			<th>Clients ID</th>
+			<th>Company name</th>
+			<th>Address</th>
+			<th>Company size</th>
+			<th colspan="2">Contact information</th>
+			<th>Created</th>
+			<th>Record owner</th>
+			<th colspan="2">Action</th>
+		</tr>
+		<th:block th:object="${client}">
+			<tr>
+				<td th:text="${client.id}">Clients company ID</td>
+				<td th:text="${client.clientName}">Clients company name</td>
+				<td th:text="${client.address}">Clients company address</td>
+				<td th:text="${client.companySize.size}">Clients company size</td>
+				<td th:text="${client.phoneNumber}">Clients company phone
+					number</td>
+				<td th:text="${client.email}">Clients company email</td>
+				<td th:text="${client.created}">Record creation date</td>
+				<td th:text="${client.user.username}">Record owner</td>
+				<td><a
+					th:href="@{/dashboard/client/{id}/edit(id=${client.id})}">Edit</a></td>
+				<td><a
+					th:href="@{/dashboard/client/{id}/delete(id=${client.id})}">Delete</a></td>
+			</tr>
+		</th:block>
+	</table>
+	<br></br>
+
+	<th:block th:object="${client}">
+	<div th:if="${client.notes != null}">
+	<h3>Notes:</h3>
+	<p th:text="${client.notes}"></p>
+	</div>
+	
+	<div th:if="${client.notes == null}">
+	<p>Notes are empty for this record.</p>
+	</div>
+
+	</th:block>
+
+
+
+
+
+
+	<br></br>
+	<a th:href="@{/dashboard/clientslist}">Go back to clients list</a>
+	<br></br>
+	<a th:href="@{/dashboard}">Go back to user dashboard</a>
+</body>
+</html>
