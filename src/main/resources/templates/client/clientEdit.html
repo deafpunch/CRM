@@ -16,10 +16,10 @@
     	<label for="email">Contact e-mail address(*): </label>
     	<p><input type="text" name="email" th:value="*{email}" placeholder="${client.email}"/></p>
     	<label for="companySize">Company size(*):</label>
-    	<p><select th:field="*{companySize}" th:selected="${client.companySize.size}" name="companySize">
+    	<p><select th:field="*{companySize}">
   		<option th:each="size : ${sizes}" 
-          th:value="${size.id}" 
-          th:utext="${size.size}">Company size</option>
+          th:value="${size}" 
+          th:text="${size}">Company size</option>
 		</select></p>
 		<br></br>
     	<p>(*) - required fields</p>

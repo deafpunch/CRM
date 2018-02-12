@@ -20,8 +20,8 @@
     	<label for="companySize">Company size(*) :</label>
     	<select th:field="*{companySize}">
   		<option th:each="size : ${sizes}" 
-          th:value="${size.id}" 
-          th:utext="${size.size}">Company size</option>
+          th:value="${size}" 
+          th:text="${size}">Company size</option>
 		</select>
     	<br></br>
     	<p>(*) - required fields</p>
@@ -42,8 +42,8 @@
     	<label for="companySize">Company size(*) :</label>
     	<select th:field="*{companySize}">
   		<option th:each="size : ${sizes}" 
-          th:value="${size.id}" 
-          th:utext="${size.size}">Company size</option>
+          th:value="${size}" 
+          th:text="${size}">Company size</option>
 		</select>
     	<br></br>
     	<p>(*) - required fields</p>

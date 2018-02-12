@@ -1,6 +1,7 @@
 package pl.amelco.crm.controller;
 
 import java.security.Principal;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -14,18 +15,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import pl.amelco.crm.entity.Client;
-import pl.amelco.crm.entity.CompanySize;
+import pl.amelco.crm.entity.CompanySizeEnum;
 import pl.amelco.crm.entity.User;
 import pl.amelco.crm.repository.ClientRepository;
-import pl.amelco.crm.repository.CompanySizeRepository;
 import pl.amelco.crm.repository.UserRepository;
 import pl.amelco.crm.service.UserServiceImpl;
 
 @Controller
 public class ClientController {
-	
-	@Autowired
-	CompanySizeRepository companySizeRepository;
 	
 	@Autowired
 	ClientRepository clientRepository;
@@ -38,7 +35,7 @@ public class ClientController {
 	
 	@ModelAttribute
 	public void getCompanySizeList(Model model) {
-		List<CompanySize> sizes = companySizeRepository.findAll();
+		List<CompanySizeEnum> sizes = Arrays.asList(CompanySizeEnum.values());
 		model.addAttribute("sizes", sizes);
 	}
 	
@@ -114,9 +111,9 @@ public class ClientController {
 	
 //	@GetMapping(path="/test")
 //	@ResponseBody
-//	public String test(HttpSession sess) {
-//		User user = (User) sess.getAttribute("loggedInUser");
-//		return "Znaleziono w sesji: " + user.getUsername();
+//	public String test() {
+//		List<CompanySizeEnum> sizes = Arrays.asList(CompanySizeEnum.values());
+//		return sizes.toString();
 //	}
 	
 	
