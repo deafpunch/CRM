@@ -3,6 +3,7 @@ package pl.amelco.crm.service;
 import java.security.Principal;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -45,4 +46,5 @@ public class UserServiceImpl implements UserService {
 		User result = userRepository.findByUsername(name);
 		return result;
 	}
+
 }

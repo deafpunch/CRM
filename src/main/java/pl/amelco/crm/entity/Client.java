@@ -2,9 +2,7 @@ package pl.amelco.crm.entity;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -51,7 +49,7 @@ public class Client {
 	@Column(nullable = false, unique = true)
 	private String email;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;	
 	

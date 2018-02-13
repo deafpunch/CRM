@@ -12,6 +12,7 @@ padding:10px;
 </style>
 </head>
 <body>
+
 	<a th:href="@{/dashboard/addclient}">Add new client</a><br></br>
 	<br></br>
 	<a th:href="@{/dashboard/client/search}">Search for customers</a>
@@ -20,8 +21,11 @@ padding:10px;
 	<a th:href="@{/dashboard}">Go back to user dashboard</a>
 	<br></br>
 	<br></br>
+	<a th:href="@{/dashboard/clientslist}">Clients list</a>
+	<br></br>
+	<br></br>
 	<div class="message" th:if="${message != null}">
-	<p th:text="${message}">Message from controller</p>
+<p th:text="${message}">Message from controller</p>
 	</div>
 <table border="1" cellpadding="10">
 <tr>

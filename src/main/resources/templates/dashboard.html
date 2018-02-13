@@ -7,11 +7,14 @@
 <body>
 	<a th:href="@{/logout}">Logout</a>
 	<br></br>
+	<a th:href="@{/settings}">User settings</a>
+	<br></br>
 	<a th:href="@{/dashboard/addclient}">Add new client</a><br></br>
 	<div sec:authorize="hasRole('ROLE_ADMIN')">
    <a th:href="@{/admin/createuser}">Create new user</a><br></br>
+   </div>
    <a th:href="@{/dashboard/clientslist}">Clients list</a><br></br>
-</div>
+
 	
 </body>
 </html>

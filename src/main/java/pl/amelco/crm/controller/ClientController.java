@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import pl.amelco.crm.entity.Client;
 import pl.amelco.crm.entity.CompanySizeEnum;
@@ -22,6 +23,7 @@ import pl.amelco.crm.repository.UserRepository;
 import pl.amelco.crm.service.UserServiceImpl;
 
 @Controller
+@RequestMapping(path="/dashboard")
 public class ClientController {
 	
 	@Autowired
@@ -39,28 +41,31 @@ public class ClientController {
 		model.addAttribute("sizes", sizes);
 	}
 	
-	@GetMapping(path="/dashboard/addclient")
+	@GetMapping(path="/addclient")
 	public String addNewClientGet(@ModelAttribute Client client, Model model) {
 		getCompanySizeList(model);
 		return "client/addClient";
 	}
 	
-	@PostMapping(path="/dashboard/addclient")
-	public String addNewClientPost(Client client, HttpSession sess, Principal principal) {
+	@PostMapping(path="/addclient")
+	public String addNewClientPost(Client client, HttpSession sess, Principal principal, Model model) {
 		User user = userServiceImpl.findByUsername(principal.getName());
 		client.setUser(user);
 		clientRepository.save(client);
-		return "client/successAdd";
+		model.addAttribute("message", new String("New customer has been added successfully!"));
+		List<Client> clients = clientRepository.findAll();
+		model.addAttribute("clients", clients);
+		return "client/clientsList";
 	}
 	
-	@GetMapping(path="/dashboard/clientslist")
+	@GetMapping(path="/clientslist")
 	public String showClientsList(Model model) {
 		List<Client> clients = clientRepository.findAll();
 		model.addAttribute("clients", clients);
 		return "client/clientsList";
 	}
 	
-	@GetMapping(path="/dashboard/client/{id}/details")
+	@GetMapping(path="/client/{id}/details")
 	public String showClientDetails(@PathVariable Long id, Model model) {
 		Client client = new Client();
 		client = clientRepository.findById(id);
@@ -68,7 +73,7 @@ public class ClientController {
 		return "client/clientDetails";
 	}
 	
-	@GetMapping(path="/dashboard/client/{id}/edit")
+	@GetMapping(path="/client/{id}/edit")
 	public String editClientDetails(@PathVariable Long id, Model model) {
 		Client client = new Client();
 		client = clientRepository.findById(id);
@@ -77,7 +82,7 @@ public class ClientController {
 		return "client/clientEdit";
 	}
 	
-	@PostMapping(path="/dashboard/client/{id}/edit")
+	@PostMapping(path="/client/{id}/edit")
 	public String editClientDetailsPost(@PathVariable Long id, Model model, Client client, Principal principal) {
 		User user = userServiceImpl.findByUsername(principal.getName());
 		client.setUser(user);
@@ -89,15 +94,17 @@ public class ClientController {
 		return "client/clientDetails";
 	}
 	
-	@GetMapping(path="/dashboard/client/{id}/delete")
+	@GetMapping(path="/client/{id}/delete")
 	public String deleteClient(@PathVariable Long id, Model model) {
 		Client client = clientRepository.findById(id);
 		clientRepository.delete(client);
 		model.addAttribute("message", new String("Record has been deleted!"));
+		List<Client> clients = clientRepository.findAll();
+		model.addAttribute("clients", clients);
 		return "client/clientsList";
 	}
 	
-	@GetMapping(path="/dashboard/client/{id}/copy")
+	@GetMapping(path="/client/{id}/copy")
 	public String copyClientToNewRecord(@PathVariable Long id, Model model, Principal principal) {
 		Client client = clientRepository.findById(id);
 		client.setId(null);
@@ -108,6 +115,9 @@ public class ClientController {
 		return "client/addClient";
 		
 	}
+	
+
+	
 	
 //	@GetMapping(path="/test")
 //	@ResponseBody

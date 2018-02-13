@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<meta charset="UTF-8"></meta>
+<head>
+</head>
+<body>
+	<h3>User settings</h3><br></br>
+ 
+ <form action="#" th:action="@{/savesettings}" th:object="${user}" method="post">
+    	<label for="username">Username: </label>
+    	<p><input type="text" name="username" th:value="*{username}" /></p>
+    	<label for="password">Username password: </label>
+    	<p><input type="password" name="password" th:value="password" /></p>
+    	<label for="email">E-mail address: </label>
+    	<p><input type="text" name="email" th:value="*{email}" /></p>
+    
+    	
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+</body>
+</html>

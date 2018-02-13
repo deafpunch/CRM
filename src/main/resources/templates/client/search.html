@@ -1,0 +1,112 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<meta charset="UTF-8"></meta>
+<head>
+<style>
+.odd{
+margin:10px;
+padding:10px;
+}
+.even{
+background-color:#eaedea;
+margin:10px;
+padding:10px;
+}
+</style>
+<title>Search for clients</title>
+</head>
+<body>
+	<div class="odd">
+		<form action="#" th:action="@{/dashboard/client/search/byclientname}"
+			th:object="${searchCriteria}" method="post">
+			<label for="criterion"><h4>Search client by name</h4></label>
+			<p>
+				<input type="text" name="criterion" th:value="*{criterion}"
+					placeholder="Type name of a client" />
+			</p>
+			<input type="submit" value="Search" /> <input type="reset"
+				value="Reset" />
+		</form>
+	</div>
+	<div class="even">
+		<form action="#" th:action="@{/dashboard/client/search/byid}"
+			th:object="${searchCriteria}" method="post">
+			<label for="criterion"><h4>Search client by ID</h4></label>
+			<p>
+				<input type="text" name="criterion" th:value="*{criterion}"
+					placeholder="Type clients ID" />
+			</p>
+			<input type="submit" value="Search" /> <input type="reset"
+				value="Reset" />
+		</form>
+	</div>
+	<div class="odd">
+		<form action="#" th:action="@{/dashboard/client/search/byaddress}"
+			th:object="${searchCriteria}" method="post">
+			<label for="criterion"><h4>Search client by address</h4></label>
+			<p>
+				<input type="text" name="criterion" th:value="*{criterion}"
+					placeholder="Type clients address" />
+			</p>
+			<input type="submit" value="Search" /> <input type="reset"
+				value="Reset" />
+		</form>
+	</div>
+	<div class="even">
+		<form action="#" th:action="@{/dashboard/client/search/bycompanysize}"
+			th:object="${searchCriteria}" method="post">
+			<label for="companySize"><h4>Search by company size</h4></label>
+			<p>
+				<select th:field="*{criterion}">
+					<option th:each="size : ${sizes}" th:value="${size}"
+						th:text="${size}">Search by company size</option>
+				</select>
+			</p>
+			<input type="submit" value="Search" /> <input type="reset"
+				value="Reset" />
+		</form>
+	</div>
+	<div class="odd">
+		<form action="#" th:action="@{/dashboard/client/search/byphonenumber}"
+			th:object="${searchCriteria}" method="post">
+			<label for="criterion"><h4>Search client by phone number</h4></label>
+			<p>
+				<input type="text" name="criterion" th:value="*{criterion}"
+					placeholder="Type clients phone number" />
+			</p>
+			<input type="submit" value="Search" /> <input type="reset"
+				value="Reset" />
+		</form>
+	</div>
+	<div class="even">
+		<form action="#" th:action="@{/dashboard/client/search/byemail}"
+			th:object="${searchCriteria}" method="post">
+			<label for="criterion"><h4>Search client by email address</h4></label>
+			<p>
+				<input type="text" name="criterion" th:value="*{criterion}"
+					placeholder="Type clients email address" />
+			</p>
+			<input type="submit" value="Search" /> <input type="reset"
+				value="Reset" />
+		</form>
+	</div>
+	<div class="odd">
+		<form action="#" th:action="@{/dashboard/client/search/byrecordowner}"
+			th:object="${searchCriteria}" method="post">
+			<label for="users"><h4>Search by record owner</h4></label>
+			<p>
+				<select th:field="*{criterion}">
+					<option th:each="user : ${users}" th:value="${user.getId()}"
+						th:text="${user.username}">Search by record owner</option>
+				</select>
+			</p>
+			<input type="submit" value="Search" /> <input type="reset"
+				value="Reset" />
+		</form>
+	</div>
+
+
+
+</body>
+</html>
+
