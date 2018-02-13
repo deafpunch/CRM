@@ -11,17 +11,18 @@ padding:10px;
 </style>
 </head>
 <body>
-	<h3>User settings</h3>
-	<br></br>
+<br></br>
 	<a th:href="@{/dashboard}">Go back to user dashboard</a>
 	<br></br>
 	<br></br>
+	<h3>User settings</h3>
 	<div class="message" th:if="${message != null}">
 		<p th:text="${message}">Message from controller</p>
 	</div>
 	<br></br>
 	<br></br>
-	<form action="#" th:action="@{/settings}" th:object="${user}" method="post">
+	<form action="#" th:action="@{/settings}" th:object="${user}"
+		method="post">
 		<label for="username">Username: </label>
 		<p>
 			<input type="text" name="username" th:value="*{username}"
@@ -40,6 +41,11 @@ padding:10px;
 			syntax) </label>
 		<p>
 			<input type="text" name="customQuery" th:field="*{customQuery}" placeholder="Custom query"/>
+		</p>
+		<p>
+		<th:block th:each="role : ${user.roles}">
+		<td>Your role is: <span th:text="${role.name}"></span></td>
+		</th:block>
 		</p>
 		<p>
 			<input type="submit" value="Submit" /> <input type="reset"

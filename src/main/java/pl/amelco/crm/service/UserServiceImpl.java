@@ -3,6 +3,9 @@ package pl.amelco.crm.service;
 import java.security.Principal;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -40,25 +43,52 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public void updateUser(User user) {
-		User dbUser = userRepository.findById(user.getId());
-		System.out.println(dbUser.getUsername());
-//		if (user.getPassword()
-//				.equals(dbUser.getPassword()) 
-//			|| user.getPassword().equals("Password")) {
-//			
-//			user.setPassword(dbUser.getPassword());
-//			userRepository.save(user);
-//		}else {
-//			user.setPassword(passwordEncoder.encode(user.getPassword()));
-//			userRepository.save(user);
-//		}
+	public void updateUser(User user, HttpSession sess) {
+		if (user.getId() == null) {
+			User userToCompare = findByUsername(user.getUsername());
+			if (user.getPassword()
+					.equals(userToCompare.getPassword()) 
+				|| user.getPassword().equals("Password")) {
+				
+				user.setPassword(userToCompare.getPassword());
+				user.setId(userToCompare.getId());
+				checkForRolesChange(user, userToCompare);
+				userRepository.save(user);
+			}else {
+				user.setPassword(passwordEncoder.encode(user.getPassword()));
+				user.setId(userToCompare.getId());
+				checkForRolesChange(user, userToCompare);
+				userRepository.save(user);
+			}
+		}else {
+			User userToCompare = userRepository.findById(user.getId());
+			if (user.getPassword()
+					.equals(userToCompare.getPassword()) 
+				|| user.getPassword().equals("Password")) {
+				
+				user.setPassword(userToCompare.getPassword());
+				user.setId(userToCompare.getId());
+				checkForRolesChange(user, userToCompare);
+				userRepository.save(user);
+			}else {
+				user.setPassword(passwordEncoder.encode(user.getPassword()));
+				user.setId(userToCompare.getId());
+				checkForRolesChange(user, userToCompare);
+				userRepository.save(user);
+			}
+		}
 	}
 	
 	public User getLoggedInUser(Principal principal) {
 		String name = principal.getName();
 		User result = userRepository.findByUsername(name);
 		return result;
+	}
+	
+	public void checkForRolesChange(User user, User userToCompare){
+		if (user.getRoles().equals(userToCompare.getRoles())) {
+			user.setRoles(userToCompare.getRoles());
+		}
 	}
 
 }

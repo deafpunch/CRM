@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:tiles="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
 <meta charset="UTF-8"></meta>
 <head>
 <style>
@@ -13,16 +13,21 @@ border-style: solid;
 width:200px;
 }
 </style>
-</head>
+</head>            					
 <body>
-	<h3>Logged in as: <span th:text="${loggedInUser}"></span></h3><br></br>
-	<a th:href="@{/logout}">Logout</a>
+	
+	
+	<!-- <h4>Role: <span th:text="${loggedInUserRole}"></span></h4><br></br> -->
+	
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Logout" />
+	</form>
 	
 	<br></br>
 	<br></br>
 	
 	
-	
+	<h3>Hello, <span th:text="${loggedInUser}"></span>!</h3><br></br>
 	<div>
 	<h3>Manage Clients</h3><br></br>
 	<a th:href="@{/dashboard/addclient}">Add new client</a><br></br>
@@ -34,18 +39,13 @@ width:200px;
 	<a th:href="@{/settings}">User settings</a>
 	</div>
 	
-	<div sec:authorize="hasRole('ROLE_ADMIN')">
+  <div sec:authorize="hasRole('ROLE_ADMIN')">
+  <!-- <div> -->
 	<h3>Admin panel</h3>
    <a th:href="@{/admin/createuser}">Create new user</a><br></br>
    <a th:href="@{/admin/allusers}">Manage users</a>
-   </div>
-   
-   <sec:authorize access="hasRole('ROLE_ADMIN')">
-    This text is only visible to an admin
-    <br/>
-</sec:authorize>
-  
-   
+</div>
+
 
 	
 </body>

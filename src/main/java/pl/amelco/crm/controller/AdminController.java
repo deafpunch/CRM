@@ -3,6 +3,8 @@ package pl.amelco.crm.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,18 +59,23 @@ public class AdminController {
 	public String manageUser(@PathVariable Long id, Model model) {
 		User user = userRepository.findById(id);
 		model.addAttribute("user", user);
-		List<Role> roles = new ArrayList<>();
-		roles = roleRepository.findAll();
-		model.addAttribute("roles", roles);
+		putRolesListToModel(model);
 		return "admin/userSettings";
 	}
 	
 	@PostMapping(path="/user/settings/{id}/details")
-	public String saveChangesForManagedUser(@PathVariable Long id, User user, Model model) {		
-		userServiceImpl.updateUser(user);
+	public String saveChangesForManagedUser(@PathVariable Long id, User user, Model model, HttpSession sess) {		
+		userServiceImpl.updateUser(user, sess);
 		model.addAttribute("message", new String("Saved!"));
 		model.addAttribute("user", user);
+		putRolesListToModel(model);
 		return "admin/userSettings";
+	}
+	
+	public void putRolesListToModel(Model model){
+		List<Role> roles = new ArrayList<>();
+		roles = roleRepository.findAll();
+		model.addAttribute("roles", roles);
 	}
 	
 }
