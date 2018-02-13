@@ -2,9 +2,16 @@
 	xmlns:tiles="http://www.thymeleaf.org">
 <meta charset="UTF-8"></meta>
 <head>
+<style>
+.message{
+background-color:#eaedea;
+margin:10px;
+padding:10px;
+}
+</style>
 </head>
 <body>
-<div th:if="${message != null}">
+<div class="message" th:if="${message != null}">
 <p th:text="${message}">Update message</p>
 	</div>
 	

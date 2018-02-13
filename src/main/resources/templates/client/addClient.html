@@ -32,13 +32,13 @@
 	<div th:if="${client != null}">
 	<form action="#" th:action="@{/dashboard/addclient}" th:object="${client}" method="post">
     	<label for="clientName">Client name(*):  </label>
-    	<p><input type="text" name="clientName" th:value="*{clientName}" /></p>
+    	<p><input type="text" name="clientName" th:value="*{clientName}" placeholder="Clients company name"/></p>
     	<label for="address">Company address: </label>
-    	<p><input type="text" name="address" th:value="*{address}" /></p>
+    	<p><input type="text" name="address" th:value="*{address}" placeholder="Address"/></p>
     	<label for="phoneNumber">Contact phone number: </label>
-    	<p><input type="text" name="phoneNumber" th:value="*{phoneNumber}" /></p>
+    	<p><input type="text" name="phoneNumber" th:value="*{phoneNumber}" placeholder="Phone number"/></p>
     	<label for="email">Contact e-mail address(*): </label>
-    	<p><input type="text" name="email" th:value="*{email}" /></p>
+    	<p><input type="text" name="email" th:value="*{email}" placeholder="Email"/></p>
     	<label for="companySize">Company size(*) :</label>
     	<select th:field="*{companySize}">
   		<option th:each="size : ${sizes}" 

@@ -3,7 +3,6 @@ package pl.amelco.crm.service;
 import java.security.Principal;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -35,10 +34,25 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void saveUser(User user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		user.setEnabled(1);
 		Role userRole = roleRepository.findByName("ROLE_USER");
 		user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
 		userRepository.save(user);
+	}
+	
+	@Override
+	public void updateUser(User user) {
+		User dbUser = userRepository.findById(user.getId());
+		System.out.println(dbUser.getUsername());
+//		if (user.getPassword()
+//				.equals(dbUser.getPassword()) 
+//			|| user.getPassword().equals("Password")) {
+//			
+//			user.setPassword(dbUser.getPassword());
+//			userRepository.save(user);
+//		}else {
+//			user.setPassword(passwordEncoder.encode(user.getPassword()));
+//			userRepository.save(user);
+//		}
 	}
 	
 	public User getLoggedInUser(Principal principal) {

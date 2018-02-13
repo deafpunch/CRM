@@ -1,0 +1,61 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<meta charset="UTF-8"></meta>
+<head>
+<style>
+.message{
+background-color:#eaedea;
+margin:10px;
+padding:10px;
+}
+</style>
+</head>
+<body>
+	
+	<br></br>
+	<a th:href="@{/dashboard}">Go back to user dashboard</a>
+	<br></br>
+	<br></br>
+	<h3>User settings</h3>
+	<div class="message" th:if="${message != null}">
+		<p th:text="${message}">Message from controller</p>
+	</div>
+	<br></br>
+	<br></br>
+	<form action="#" th:action="@{/admin/user/settings/{id}/details(id=${user.id})}" th:object="${user}"
+		method="post">
+		<label for="username">Username: </label>
+		<p>
+			<input type="text" name="username" th:value="*{username}"
+				placeholder="Username" />
+		</p>
+		<label for="password">Username password: </label>
+		<p>
+			<input type="password" name="password" th:value="Password" />
+		</p>
+		<label for="email">E-mail address: </label>
+		<p>
+			<input type="text" name="email" th:value="*{email}"
+				placeholder="Email" />
+		</p>
+		<label for="customQuery">User's custom query: (Only native SQL
+			syntax) </label>
+		<p>
+			<input type="text" name="customQuery" th:field="*{customQuery}" placeholder="Custom query"/>
+		</p>
+		<p>
+		<label for="isEnabled">User is enabled: </label>
+		 <input type="checkbox" th:field="*{enabled}" name="isEnabled" />
+		</p>
+		<p><select th:field="*{roles}">
+  		<option th:each="role : ${roles}" 
+          th:value="${role.id}" 
+          th:utext="${role.name}">Role name</option>
+		</select></p>
+		<p>
+			<input type="submit" value="Submit" /> <input type="reset"
+				value="Reset" />
+		</p>
+	</form>
+</body>
+</html>

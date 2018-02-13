@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<meta charset="UTF-8"></meta>
+<head>
+<style>
+.message{
+background-color:#eaedea;
+margin:10px;
+padding:10px;
+}
+</style>
+</head>
+<body>
+	<br></br>
+	<a th:href="@{/dashboard}">Go back to user dashboard</a>
+	<br></br>
+	<br></br>
+	<div class="message" th:if="${message != null}">
+	<p th:text="${message}">Message from controller</p>
+	</div>
+<table border="1" cellpadding="10">
+<tr>
+<th>User ID</th>
+<th>Username</th>
+<th>Action</th>
+</tr>
+<th:block th:each="user : ${users}">
+    <tr>
+    	<td th:text="${user.id}">User ID</td>
+        <td th:text="${user.username}">Username</td>
+        <td><a th:href="@{/admin/user/settings/{id}/details(id=${user.id})}">Manage user</a></td> 
+    </tr>
+</th:block>
+</table>
+
+</body>
+</html>

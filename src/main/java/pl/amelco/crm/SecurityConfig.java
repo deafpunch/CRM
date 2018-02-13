@@ -5,7 +5,6 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -22,6 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	DataSource	dataSource;
 	
+	
 //	@Override
 //	public	void	configure(AuthenticationManagerBuilder	auth)	throws	Exception	{
 ////					auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passwordEncoder());
@@ -34,14 +34,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //									.withUser("moderator").password("moderator").roles("MODERATOR");
 //	}
 	
-	
 	@Override
 	protected	void	configure(HttpSecurity	http)	throws	Exception	{
 					http.authorizeRequests()
-//									.antMatchers("/all").permitAll()
-//									.antMatchers("/product").authenticated()
-//									.antMatchers("/restricted").hasRole("ADMIN")
-//									.antMatchers("/moderator/**").hasAnyRole("MODERATOR")
+									.antMatchers("/login").permitAll()
+									.antMatchers("/").authenticated()
+									.antMatchers("/admin/**").hasRole("ADMIN")
 									.and().formLogin()
 					                .loginPage("/login")
 									.defaultSuccessUrl("/dashboard")

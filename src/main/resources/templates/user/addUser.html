@@ -8,11 +8,11 @@
  
  <form action="#" th:action="@{/admin/createuser}" th:object="${user}" method="post">
     	<label for="username">Username: </label>
-    	<p><input type="text" name="username" th:value="*{username}" /></p>
+    	<p><input type="text" name="username" th:value="*{username}" placeholder="Username"/></p>
     	<label for="password">Username password: </label>
-    	<p><input type="password" name="password" th:value="password" /></p>
+    	<p><input type="password" name="password" th:value="password" placeholder="Password"/></p>
     	<label for="email">E-mail address: </label>
-    	<p><input type="text" name="email" th:value="*{email}" /></p>
+    	<p><input type="text" name="email" th:value="*{email}" placeholder="Email"/></p>
     	<select th:field="*{roles}">
   		<option th:each="role : ${roles}" 
           th:value="${role.id}" 

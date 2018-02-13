@@ -39,7 +39,7 @@ public class User {
 	@Column(unique=true)
 	private String email;
 	
-	private int enabled;
+	private Boolean enabled = true;
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -48,5 +48,8 @@ public class User {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_client", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "client_id"))
 	private Set<Client> clients;
+	
+	@Column(nullable = true)
+	private String customQuery;
 
 }

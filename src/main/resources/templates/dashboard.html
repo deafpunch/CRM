@@ -3,17 +3,49 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <meta charset="UTF-8"></meta>
 <head>
+<style>
+div{
+border-style: solid;
+    border-color: green;
+    border-width: 3px;
+    padding:10px;
+    margin:10px;
+width:200px;
+}
+</style>
 </head>
 <body>
+	<h3>Logged in as: <span th:text="${loggedInUser}"></span></h3><br></br>
 	<a th:href="@{/logout}">Logout</a>
+	
 	<br></br>
-	<a th:href="@{/settings}">User settings</a>
 	<br></br>
+	
+	
+	
+	<div>
+	<h3>Manage Clients</h3><br></br>
 	<a th:href="@{/dashboard/addclient}">Add new client</a><br></br>
+	<a th:href="@{/dashboard/clientslist}">Clients list</a><br></br>
+	</div>
+	
+	<div>
+	<h3>Settings</h3><br></br>
+	<a th:href="@{/settings}">User settings</a>
+	</div>
+	
 	<div sec:authorize="hasRole('ROLE_ADMIN')">
+	<h3>Admin panel</h3>
    <a th:href="@{/admin/createuser}">Create new user</a><br></br>
+   <a th:href="@{/admin/allusers}">Manage users</a>
    </div>
-   <a th:href="@{/dashboard/clientslist}">Clients list</a><br></br>
+   
+   <sec:authorize access="hasRole('ROLE_ADMIN')">
+    This text is only visible to an admin
+    <br/>
+</sec:authorize>
+  
+   
 
 	
 </body>
