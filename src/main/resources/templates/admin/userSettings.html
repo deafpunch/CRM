@@ -42,11 +42,14 @@ padding:10px;
 		<label for="isEnabled">User is enabled: </label>
 		 <input type="checkbox" th:field="*{enabled}" name="isEnabled" />
 		</p>
-		<p><select th:field="*{roles}">
-  		<option th:each="role : ${roles}" 
-          th:value="${role.id}" 
-          th:utext="${role.name}">Role name</option>
+		<p>
+  		<select th:field="*{roles}">
+   	 	<option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}">Role name</option>
 		</select></p>
+		
+		
+		
+		
 		<p>
 			<input type="submit" value="Submit" /> <input type="reset"
 				value="Reset" />

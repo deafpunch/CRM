@@ -70,9 +70,13 @@ public class UserServiceImpl implements UserService {
 			userToSave.setPassword(newPassword);
 			System.out.println("new password: " + user.getPassword());
 
-		} else if (!user.getEmail().equals(userToSave.getEnabled())) {
+		} else if (!user.getEmail().equals(userToSave.getEmail())) {
 			userToSave.setEmail(user.getEmail());
 			System.out.println("new email: " + user.getEmail());
+		}
+		else if (!user.getRoles().toString().equals(userToSave.getRoles().toString())) {
+			userToSave.setRoles(user.getRoles());
+			System.out.println("new roles: " + user.getRoles());
 		}
 
 		System.out.println("User to save: " + userToSave);
