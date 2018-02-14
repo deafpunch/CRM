@@ -37,11 +37,6 @@ padding:10px;
 			<input type="text" name="email" th:value="*{email}"
 				placeholder="Email" />
 		</p>
-		<label for="customQuery">User's custom query: (Only native SQL
-			syntax) </label>
-		<p>
-			<input type="text" name="customQuery" th:field="*{customQuery}" placeholder="Custom query"/>
-		</p>
 		<p>
 		<th:block th:each="role : ${user.roles}">
 		<td>Your role is: <span th:text="${role.name}"></span></td>

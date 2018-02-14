@@ -65,10 +65,11 @@ public class AdminController {
 	
 	@PostMapping(path="/user/settings/{id}/details")
 	public String saveChangesForManagedUser(@PathVariable Long id, User user, Model model, HttpSession sess) {		
-		userServiceImpl.updateUser(user, sess);
+		user.setId(id);
 		model.addAttribute("message", new String("Saved!"));
 		model.addAttribute("user", user);
 		putRolesListToModel(model);
+		userServiceImpl.updateUser(user, sess);
 		return "admin/userSettings";
 	}
 	

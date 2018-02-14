@@ -48,8 +48,5 @@ public class User {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_client", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "client_id"))
 	private Set<Client> clients;
-	
-	@Column(nullable = true)
-	private String customQuery;
 
 }

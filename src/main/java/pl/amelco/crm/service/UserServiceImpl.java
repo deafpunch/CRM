@@ -1,9 +1,7 @@
 package pl.amelco.crm.service;
 
-import java.security.Principal;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -41,54 +39,46 @@ public class UserServiceImpl implements UserService {
 		user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
 		userRepository.save(user);
 	}
-	
+
 	@Override
 	public void updateUser(User user, HttpSession sess) {
-		if (user.getId() == null) {
-			User userToCompare = findByUsername(user.getUsername());
-			if (user.getPassword()
-					.equals(userToCompare.getPassword()) 
-				|| user.getPassword().equals("Password")) {
-				
-				user.setPassword(userToCompare.getPassword());
-				user.setId(userToCompare.getId());
-				checkForRolesChange(user, userToCompare);
-				userRepository.save(user);
-			}else {
-				user.setPassword(passwordEncoder.encode(user.getPassword()));
-				user.setId(userToCompare.getId());
-				checkForRolesChange(user, userToCompare);
-				userRepository.save(user);
-			}
-		}else {
-			User userToCompare = userRepository.findById(user.getId());
-			if (user.getPassword()
-					.equals(userToCompare.getPassword()) 
-				|| user.getPassword().equals("Password")) {
-				
-				user.setPassword(userToCompare.getPassword());
-				user.setId(userToCompare.getId());
-				checkForRolesChange(user, userToCompare);
-				userRepository.save(user);
-			}else {
-				user.setPassword(passwordEncoder.encode(user.getPassword()));
-				user.setId(userToCompare.getId());
-				checkForRolesChange(user, userToCompare);
-				userRepository.save(user);
-			}
+		Long sessionUserID = (Long) sess.getAttribute("userID");
+		
+		System.out.println("SESSION USER ID: " + sessionUserID);
+		System.out.println("FORM USER ID: " + user.getId());
+		User userToSave;
+		
+		
+
+		if (!user.getId()
+				.equals(sessionUserID)) {
+			userToSave = userRepository.findById(user.getId());
+		} else {
+			userToSave = userRepository.findById(sessionUserID);
 		}
-	}
-	
-	public User getLoggedInUser(Principal principal) {
-		String name = principal.getName();
-		User result = userRepository.findByUsername(name);
-		return result;
-	}
-	
-	public void checkForRolesChange(User user, User userToCompare){
-		if (user.getRoles().equals(userToCompare.getRoles())) {
-			user.setRoles(userToCompare.getRoles());
+
+		if (!user.getEnabled().equals(userToSave.getEnabled())) {
+			userToSave.setEnabled(user.getEnabled());
+			System.out.println("new enabled: " + userToSave.getEnabled());
+		} else if (!user.getUsername().equals(userToSave.getUsername())) {
+			userToSave.setUsername(user.getUsername());
+			System.out.println("new username: " + userToSave.getUsername());
 		}
+
+		else if (!user.getPassword().equals("Password")) {
+			String newPassword = passwordEncoder.encode(user.getPassword());
+			userToSave.setPassword(newPassword);
+			System.out.println("new password: " + user.getPassword());
+
+		} else if (!user.getEmail().equals(userToSave.getEnabled())) {
+			userToSave.setEmail(user.getEmail());
+			System.out.println("new email: " + user.getEmail());
+		}
+
+		System.out.println("User to save: " + userToSave);
+		System.out.println("Just user: " + user);
+
+		userRepository.saveAndFlush(userToSave);
 	}
 
 }
