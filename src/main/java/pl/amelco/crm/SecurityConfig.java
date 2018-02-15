@@ -21,13 +21,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	DataSource	dataSource;
 	
-	
-//	@Override
-//	public	void	configure(AuthenticationManagerBuilder	auth)	throws	Exception	{		
-//					auth.inMemoryAuthentication()
-//									.withUser("admin1").password("admin1").roles("ADMIN");
-//					}
-	
 	@Override
 	protected	void	configure(HttpSecurity	http)	throws	Exception	{
 					http.authorizeRequests()

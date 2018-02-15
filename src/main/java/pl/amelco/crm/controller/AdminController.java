@@ -33,6 +33,13 @@ public class AdminController {
 	@Autowired
 	RoleRepository roleRepository;
 	
+	/**
+	 * Forwarding to user creation form 
+	 * @param user
+	 * @param model
+	 * @return Creation form
+	 */
+	
 	@GetMapping(path="/createuser")
 	public String createUser(@ModelAttribute User user, Model model) {
 		List<Role> roles = new ArrayList<>();
@@ -41,11 +48,27 @@ public class AdminController {
 		return "user/addUser";
 	}
 	
+	/**
+	 * Creating new user record in database with given filled form
+	 * @param user (filled User type form)
+	 * @param model (passing list of all users to the view)
+	 * @return all registered users list view
+	 */
+	
 	@PostMapping(path="/createuser")
-	public String createUserPost(User user) {
+	public String createUserPost(User user, Model model) {
 		userServiceImpl.saveUser(user);
-		return "user/successAdd";
+		List<User> users = userRepository.findAll();
+		model.addAttribute("users", users);
+		model.addAttribute("message", "User created!");
+		return "admin/allUsers";
 	}
+	
+	/**
+	 * Passing to view list of all registered users
+	 * @param model (with users list)
+	 * @return all registered users list view
+	 */
 	
 	@GetMapping(path="/allusers")
 	public String allUsersList(Model model) {
@@ -54,6 +77,12 @@ public class AdminController {
 		return "admin/allUsers";
 	}
 	
+	/**
+	 * Showing details of specific user based on user ID given in @PathVariable
+	 * @param id (User id)
+	 * @param model (passing user record to the view)
+	 * @return user details view
+	 */
 	
 	@GetMapping(path="/user/settings/{id}/details")
 	public String manageUser(@PathVariable Long id, Model model) {
@@ -62,6 +91,15 @@ public class AdminController {
 		putRolesListToModel(model);
 		return "admin/userSettings";
 	}
+	
+	/**
+	 * Updating user record based on given User model from filled form
+	 * @param id (ID of the user to update)
+	 * @param user (object passed from the form)
+	 * @param model (passing back updated user object and list of available user roles)
+	 * @param sess (Parameter needed in userService method)
+	 * @return same view with updated values
+	 */
 	
 	@PostMapping(path="/user/settings/{id}/details")
 	public String saveChangesForManagedUser(@PathVariable Long id, User user, Model model, HttpSession sess) {		
@@ -72,6 +110,11 @@ public class AdminController {
 		userServiceImpl.updateUser(user, sess);
 		return "admin/userSettings";
 	}
+	
+	/**
+	 * Passing to the model list of all available user roles
+	 * @param model
+	 */
 	
 	public void putRolesListToModel(Model model){
 		List<Role> roles = new ArrayList<>();

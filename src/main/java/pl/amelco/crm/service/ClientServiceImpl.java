@@ -56,12 +56,16 @@ public class ClientServiceImpl implements ClientService {
 		return clients;
 	}
 
+	/**
+	 * Checking if Client record exist based on unique values such as clienName and clients email address
+	 */
+	
 	@Override
 	public boolean checkIfClientExist(Client client) {
 		// Client name and email address are marked as unique value
 		Client byName = (Client) clientRepository.findByClientsName(client.getClientName());
 		Client byEmail = (Client) clientRepository.findByEmail(client.getEmail());
-		if (byName == null || byEmail == null) {
+		if(byName == null || byEmail == null) {
 			return false;
 		}
 		else {
@@ -69,6 +73,11 @@ public class ClientServiceImpl implements ClientService {
 		}
 		
 	}
+	
+	/**
+	 *  This method is comparing two object of the same ID (client from database and from the form). 
+	 *  It checks for changes and if there are any - changes are saved instantly to database.
+	 */
 
 	@Override
 	public Client updateClient(Client client) {

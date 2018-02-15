@@ -27,10 +27,14 @@ public class SpringDataUserDetailsService implements UserDetailsService {
 	@Autowired
 	MainController mainController;
 
+	/**
+	 * Standard Spring Security method to check for user roles.
+	 * Method is equipped with extra mechanism to check if user is deactivated. If so, it is moving to login page.
+	 */
+	
 	@Override
 	public UserDetails loadUserByUsername(String username) {
 		User user = userService.findByUsername(username);
-//		System.out.println("USER DATA WHILE LOGGING IN: " + user);
 		if (user == null) {
 			throw new UsernameNotFoundException(username);
 		}else if (user.getEnabled() == false) {

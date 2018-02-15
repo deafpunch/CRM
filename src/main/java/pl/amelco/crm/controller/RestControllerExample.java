@@ -34,6 +34,11 @@ public class RestControllerExample {
 	@Autowired
 	ClientServiceImpl clientServiceImpl;
 
+	/**
+	 * Method is finding all records of type Client
+	 * @return ResponseEntity with records list and HttpStatus.OK
+	 */
+	
 	@GetMapping(path = "/allclients")
 	public ResponseEntity<List<Client>> getAllClients() {
 		List<Client> list = clientRepository.findAll();
@@ -42,6 +47,12 @@ public class RestControllerExample {
 		}
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
+	
+	/**
+	 * Search for user with given ID via @PathVariable.
+	 * @param id (for user record)
+	 * @return ResponseEntity with one user found, HttpStatus.OK
+	 */
 
 	@GetMapping(path = "/{id}/user")
 	public ResponseEntity<User> getUserByID(@PathVariable Long id) {
@@ -53,6 +64,14 @@ public class RestControllerExample {
 		return new ResponseEntity<>(user, HttpStatus.OK);
 	}
 
+	/**
+	 * Creates new client record in database, based on given Client type object.
+	 * If such record exists, returns HttpStatus.CONFLICT
+	 * @param client
+	 * @param ucBuilder 
+	 * @return returning new created record wrapped in ResponseEntity and new URL path directing to this record.
+	 */
+	
 	@PostMapping(path = "/createuser")
 	public ResponseEntity<Void> createNewClient(@RequestBody Client client, UriComponentsBuilder ucBuilder) {
 
@@ -66,6 +85,13 @@ public class RestControllerExample {
 			return new ResponseEntity<>(headers, HttpStatus.CREATED);
 		}
 	}
+	
+	/**
+	 * Edits client record based on found record by given client ID from @PathVariable
+	 * @param id Client record ID
+	 * @param client Passed model to merge with existing client record
+	 * @return returning updated client record wrapped in ResponseEntity and HttpStatus.OK
+	 */
 
 	@PutMapping(path = "/client/{id}/edit")
 	public ResponseEntity<Client> updateClient(@PathVariable Long id, @RequestBody Client client) {

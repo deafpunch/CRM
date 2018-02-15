@@ -23,29 +23,34 @@ public class MainController {
 	@Autowired
 	UserRepository userRepository;
 	
+	/**
+	 *  @return Login page view
+	 */
+	
 	@GetMapping(path="/")
 	public String getLandingPage() {
-		return "login";
+		return "login";	}
 
-	}
-	
-	@GetMapping(path="/logout")
-	public String logout() { return "logout";}
-	
+	/**
+	 *  Shows main dashboard for logged in user
+	 *  
+	 * @param principal (getting authenticated user username)
+	 * @param request (used to initialize session)
+	 * @param model (used to pass to the view logged in user object)
+	 * @param sess (used for setting logged in user ID inside session)
+	 * @return dashboard view
+	 */
 	
 	@GetMapping(path="/dashboard")
 	public String index(Principal principal, HttpServletRequest request, Model model, HttpSession sess) {
 		if (sess.getAttribute("userID") == null) {
 			User user = userServiceImpl.findByUsername(principal.getName());
 			request.getSession().setAttribute("userID", user.getId());
-//			System.out.println("User credentials from dashboard: " + user);
-//			System.out.println("User id from session: " + sess.getAttribute("userID"));
 			model.addAttribute("loggedInUser", user.getUsername());
 			return "dashboard";
 		}else {			
 			Long idFromSession = (Long) sess.getAttribute("userID");
 			User user = userRepository.findById(idFromSession);
-//			System.out.println("User id from session: " + sess.getAttribute("userID"));
 			model.addAttribute("loggedInUser", user.getUsername());
 			return "dashboard";
 		}

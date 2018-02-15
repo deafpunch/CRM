@@ -25,14 +25,19 @@ public class TestController {
 	FileModelService fileModelService;
 	
 	
+	/*
+	 * 
+	 * THIS CONTROLLER IS CREATED ONLY FOR TESTING PURPOSES
+	 * 
+	 * 
+	 */
+	
 	
 	@GetMapping(path="/username")
 	@ResponseBody
 	public String showLoggedinUser(Principal principal, HttpSession sess) {	
 		User user = userRepository.findById((Long)sess.getAttribute("userID"));
-//		User user = userServiceImpl.findByUsername("manager");
 		return "Logged in user: " + user.getUsername() + ", user id: " + user.getId() + ", Role:" + user.getRoles();
-//		return principal.getName();
 	}
 	
 	@GetMapping(path="/file/upload")  

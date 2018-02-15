@@ -21,6 +21,13 @@ import pl.amelco.crm.service.FileModelService;
 @RestController
 public class FileController {
 
+	/*
+	 * 
+	 * EXPERIMENTING WITH FILES UPLOADING
+	 * 
+	 */
+	
+	
 	@Autowired
 	 private FileModelService fileModelService;
 

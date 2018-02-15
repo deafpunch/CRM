@@ -32,6 +32,10 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findByUsername(username);
 	}
 
+	/**
+	 * Saving newly created user to database 
+	 */
+	
 	@Override
 	public void saveUser(User user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -40,15 +44,15 @@ public class UserServiceImpl implements UserService {
 		userRepository.save(user);
 	}
 
+	/**
+	 *  This method is comparing two object of the same ID (user from database and from the form). 
+	 *  It checks for changes and if there are any - changes are saved instantly to database.
+	 */
+	
 	@Override
 	public void updateUser(User user, HttpSession sess) {
 		Long sessionUserID = (Long) sess.getAttribute("userID");
-		
-//		System.out.println("SESSION USER ID: " + sessionUserID);
-//		System.out.println("FORM USER ID: " + user.getId());
 		User userToSave;
-		
-		
 
 		if (!user.getId()
 				.equals(sessionUserID)) {
@@ -59,30 +63,20 @@ public class UserServiceImpl implements UserService {
 
 		if (!user.getEnabled().equals(userToSave.getEnabled())) {
 			userToSave.setEnabled(user.getEnabled());
-//			System.out.println("new enabled: " + userToSave.getEnabled());
 		} else if (!user.getUsername().equals(userToSave.getUsername())) {
 			userToSave.setUsername(user.getUsername());
-//			System.out.println("new username: " + userToSave.getUsername());
 		}
 
 		else if (!user.getPassword().equals("Password")) {
 			String newPassword = passwordEncoder.encode(user.getPassword());
 			userToSave.setPassword(newPassword);
-//			System.out.println("new password: " + user.getPassword());
 
 		} else if (!user.getEmail().equals(userToSave.getEmail())) {
 			userToSave.setEmail(user.getEmail());
-//			System.out.println("new email: " + user.getEmail());
 		}
 		else if (!user.getRoles().toString().equals(userToSave.getRoles().toString())) {
 			userToSave.setRoles(user.getRoles());
-//			System.out.println("new roles: " + user.getRoles());
 		}
-
-//		System.out.println("User to save: " + userToSave);
-//		System.out.println("Just user: " + user);
-
 		userRepository.saveAndFlush(userToSave);
 	}
-
 }
