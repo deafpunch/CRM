@@ -35,17 +35,38 @@ public class ClientController {
 	@Autowired
 	UserRepository userRepository;
 	
+	/**
+	 * Adding model attribute to GET.method filled with list of possible company sizes according to CompanysizeEnum values; 
+	 * @param model
+	 */
+	
 	@ModelAttribute
 	public void getCompanySizeList(Model model) {
 		List<CompanySizeEnum> sizes = Arrays.asList(CompanySizeEnum.values());
 		model.addAttribute("sizes", sizes);
 	}
 	
+	/**
+	 * Returning view with for to add new client
+	 * @param client (model based on Client entity)
+	 * @param model
+	 * @return View with form
+	 */
+	
 	@GetMapping(path="/addclient")
 	public String addNewClientGet(@ModelAttribute Client client, Model model) {
 		getCompanySizeList(model);
 		return "client/addClient";
 	}
+	
+	/**
+	 * 
+	 * @param client
+	 * @param sess
+	 * @param principal
+	 * @param model
+	 * @return
+	 */
 	
 	@PostMapping(path="/addclient")
 	public String addNewClientPost(Client client, HttpSession sess, Principal principal, Model model) {

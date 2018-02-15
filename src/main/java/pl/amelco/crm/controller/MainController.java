@@ -24,7 +24,7 @@ public class MainController {
 	UserRepository userRepository;
 	
 	@GetMapping(path="/")
-	public String getLandingPage(Principal principal, HttpSession sess) {
+	public String getLandingPage() {
 		return "login";
 
 	}

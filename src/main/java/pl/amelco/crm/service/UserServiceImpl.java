@@ -44,8 +44,8 @@ public class UserServiceImpl implements UserService {
 	public void updateUser(User user, HttpSession sess) {
 		Long sessionUserID = (Long) sess.getAttribute("userID");
 		
-		System.out.println("SESSION USER ID: " + sessionUserID);
-		System.out.println("FORM USER ID: " + user.getId());
+//		System.out.println("SESSION USER ID: " + sessionUserID);
+//		System.out.println("FORM USER ID: " + user.getId());
 		User userToSave;
 		
 		
@@ -59,28 +59,28 @@ public class UserServiceImpl implements UserService {
 
 		if (!user.getEnabled().equals(userToSave.getEnabled())) {
 			userToSave.setEnabled(user.getEnabled());
-			System.out.println("new enabled: " + userToSave.getEnabled());
+//			System.out.println("new enabled: " + userToSave.getEnabled());
 		} else if (!user.getUsername().equals(userToSave.getUsername())) {
 			userToSave.setUsername(user.getUsername());
-			System.out.println("new username: " + userToSave.getUsername());
+//			System.out.println("new username: " + userToSave.getUsername());
 		}
 
 		else if (!user.getPassword().equals("Password")) {
 			String newPassword = passwordEncoder.encode(user.getPassword());
 			userToSave.setPassword(newPassword);
-			System.out.println("new password: " + user.getPassword());
+//			System.out.println("new password: " + user.getPassword());
 
 		} else if (!user.getEmail().equals(userToSave.getEmail())) {
 			userToSave.setEmail(user.getEmail());
-			System.out.println("new email: " + user.getEmail());
+//			System.out.println("new email: " + user.getEmail());
 		}
 		else if (!user.getRoles().toString().equals(userToSave.getRoles().toString())) {
 			userToSave.setRoles(user.getRoles());
-			System.out.println("new roles: " + user.getRoles());
+//			System.out.println("new roles: " + user.getRoles());
 		}
 
-		System.out.println("User to save: " + userToSave);
-		System.out.println("Just user: " + user);
+//		System.out.println("User to save: " + userToSave);
+//		System.out.println("Just user: " + user);
 
 		userRepository.saveAndFlush(userToSave);
 	}

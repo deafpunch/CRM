@@ -1,7 +1,5 @@
 package pl.amelco.crm.controller;
 
-import java.security.Principal;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import pl.amelco.crm.entity.User;
 import pl.amelco.crm.repository.UserRepository;
@@ -24,6 +21,15 @@ public class UserController {
 	@Autowired
 	UserRepository userRepository;
 	
+	/**
+	 * Passing user model filled with data 
+	 * from database for user with ID (taken from session)
+	 * 
+	 * @param sess (used for download user ID from session)
+	 * @param model (user model)
+	 * @return view (form for editing user data)
+	 */
+	
 	@GetMapping(path="/settings")
 	public String userSettings(HttpSession sess, Model model) {
 		User user = userRepository.findById((Long)sess.getAttribute("userID"));
@@ -31,24 +37,21 @@ public class UserController {
 		return "user/userSettings";
 	}
 	
+	/**
+	 * Saving changes for user data in database
+	 * 
+	 * @param user (model given by form)
+	 * @param model (used for passing message again to the view)
+	 * @param sess (taking user ID from session for filling model before saving in database)
+	 * @return view (form for editing user data) with additional message
+	 */
+	
 	@PostMapping(path="/settings")
 	public String saveChangesForUser(User user, Model model, HttpSession sess) {		
 		user.setId((Long)sess.getAttribute("userID"));
 		model.addAttribute("message", new String("Saved!"));
 		model.addAttribute("user", user);
-		System.out.println("User name and id: " + user.getId() + " " + user.getUsername());
 		userServiceImpl.updateUser(user, sess);
 		return "user/userSettings";
 	}
-	
-	@GetMapping(path="/username")
-	@ResponseBody
-	public String showLoggedinUser(Principal principal, HttpSession sess) {
-		User user = userRepository.findById((Long)sess.getAttribute("userID"));
-//		User user = userServiceImpl.findByUsername("manager");
-		return "Logged in user: " + user.getUsername() + ", user id: " + user.getId() + ", Role:" + user.getRoles();
-//		return principal.getName();
-	}
-	
-	
 }

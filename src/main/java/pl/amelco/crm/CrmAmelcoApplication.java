@@ -9,4 +9,5 @@ public class CrmAmelcoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CrmAmelcoApplication.class, args);
 	}
+
 }
