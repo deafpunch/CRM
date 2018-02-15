@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -36,8 +37,6 @@ public class Client {
 	@NotEmpty
 	private String address;
 
-//	@ManyToOne(cascade = {CascadeType.ALL})
-//	@JoinColumn(name = "company_size_id", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private CompanySizeEnum companySize;
 
@@ -52,6 +51,9 @@ public class Client {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;	
+	
+	@OneToOne
+	private FileModel filemodel;
 	
 	private String notes;
 	

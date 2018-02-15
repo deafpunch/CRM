@@ -135,18 +135,5 @@ public class ClientController {
 		model.addAttribute("copiedClient", client);
 		return "client/addClient";
 		
-	}
-	
-
-	
-	
-//	@GetMapping(path="/test")
-//	@ResponseBody
-//	public String test() {
-//		List<CompanySizeEnum> sizes = Arrays.asList(CompanySizeEnum.values());
-//		return sizes.toString();
-//	}
-	
-	
-	
+	}		
 }

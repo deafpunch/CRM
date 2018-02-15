@@ -19,9 +19,7 @@ public class FileModel {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@Column
 	private String fileName;
-	@Column
 	private String fileType;
 	@Column
 	@Lob

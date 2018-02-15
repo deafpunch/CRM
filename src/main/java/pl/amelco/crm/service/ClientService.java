@@ -21,4 +21,8 @@ public interface ClientService {
 	
 	public List<Client> getClientsByEmailAddress(String email);
 	
+	public boolean checkIfClientExist(Client client);
+	
+	public Client updateClient(Client client);
+	
 }
