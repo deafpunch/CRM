@@ -23,7 +23,7 @@ import pl.deafpunch.crm.repository.UserRepository;
 import pl.deafpunch.crm.service.UserServiceImpl;
 
 @Controller
-@RequestMapping(path="/dashboard")
+@RequestMapping(path="/client")
 public class ClientController {
 	
 	@Autowired
