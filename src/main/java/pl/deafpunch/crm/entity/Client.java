@@ -1,4 +1,4 @@
-package pl.amelco.crm.entity;
+package pl.deafpunch.crm.entity;
 
 import java.util.Date;
 

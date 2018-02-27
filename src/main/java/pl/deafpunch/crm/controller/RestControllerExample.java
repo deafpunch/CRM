@@ -1,4 +1,4 @@
-package pl.amelco.crm.controller;
+package pl.deafpunch.crm.controller;
 
 import java.util.List;
 
@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import pl.amelco.crm.entity.Client;
-import pl.amelco.crm.entity.User;
-import pl.amelco.crm.repository.ClientRepository;
-import pl.amelco.crm.repository.UserRepository;
-import pl.amelco.crm.service.ClientServiceImpl;
+import pl.deafpunch.crm.entity.Client;
+import pl.deafpunch.crm.entity.User;
+import pl.deafpunch.crm.repository.ClientRepository;
+import pl.deafpunch.crm.repository.UserRepository;
+import pl.deafpunch.crm.service.ClientServiceImpl;
 
 @RestController
 @RequestMapping(path = "/api")
@@ -62,6 +62,22 @@ public class RestControllerExample {
 			return new ResponseEntity<>(user, HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<>(user, HttpStatus.OK);
+	}
+	
+	/**
+	 * Search for client with given ID via @PathVariable.
+	 * @param id (for client record)
+	 * @return ResponseEntity with one client found, HttpStatus.OK
+	 */
+	
+	@GetMapping(path = "/{id}/client")
+	public ResponseEntity<Client> getClientByID(@PathVariable Long id) {
+		Client client = clientRepository.findById(id);
+
+		if (client == null) {
+			return new ResponseEntity<>(client, HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Client>(client, HttpStatus.OK);
 	}
 
 	/**

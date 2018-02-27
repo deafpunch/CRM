@@ -1,4 +1,4 @@
-package pl.amelco.crm.controller;
+package pl.deafpunch.crm.controller;
 
 import java.security.Principal;
 
@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import pl.amelco.crm.entity.User;
-import pl.amelco.crm.repository.UserRepository;
-import pl.amelco.crm.service.FileModelService;
+import pl.deafpunch.crm.entity.User;
+import pl.deafpunch.crm.repository.UserRepository;
+import pl.deafpunch.crm.service.FileModelService;
+import pl.deafpunch.crm.service.UserServiceImpl;
 
 @Controller
 @RequestMapping(path="/")
@@ -20,6 +21,9 @@ public class TestController {
 
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	UserServiceImpl userServiceImpl;
 	
 	@Autowired
 	FileModelService fileModelService;
@@ -36,8 +40,9 @@ public class TestController {
 	@GetMapping(path="/username")
 	@ResponseBody
 	public String showLoggedinUser(Principal principal, HttpSession sess) {	
-		User user = userRepository.findById((Long)sess.getAttribute("userID"));
-		return "Logged in user: " + user.getUsername() + ", user id: " + user.getId() + ", Role:" + user.getRoles();
+//		User user = userRepository.findById((Long)sess.getAttribute("userID"));
+		User user = userServiceImpl.findById((long)2);
+		return "User: " + user.getUsername() + ", user id: " + user.getId() + ", Role:" + user.getRoles();
 	}
 	
 	@GetMapping(path="/file/upload")  

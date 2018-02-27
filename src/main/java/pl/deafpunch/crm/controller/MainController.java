@@ -1,4 +1,4 @@
-package pl.amelco.crm.controller;
+package pl.deafpunch.crm.controller;
 
 import java.security.Principal;
 
@@ -10,9 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import pl.amelco.crm.entity.User;
-import pl.amelco.crm.repository.UserRepository;
-import pl.amelco.crm.service.UserServiceImpl;
+import pl.deafpunch.crm.entity.User;
+import pl.deafpunch.crm.repository.UserRepository;
+import pl.deafpunch.crm.service.UserServiceImpl;
 
 @Controller
 public class MainController {
@@ -27,9 +27,9 @@ public class MainController {
 	 *  @return Login page view
 	 */
 	
-	@GetMapping(path="/")
+	@GetMapping(path="/login")
 	public String getLandingPage() {
-		return "login";	}
+		return "gentelella/production/login";	}
 
 	/**
 	 *  Shows main dashboard for logged in user

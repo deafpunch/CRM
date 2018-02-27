@@ -1,13 +1,13 @@
-package pl.amelco.crm.service;
+package pl.deafpunch.crm.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pl.amelco.crm.entity.Client;
-import pl.amelco.crm.entity.CompanySizeEnum;
-import pl.amelco.crm.repository.ClientRepository;
+import pl.deafpunch.crm.entity.Client;
+import pl.deafpunch.crm.entity.CompanySizeEnum;
+import pl.deafpunch.crm.repository.ClientRepository;
 
 @Service("clientService")
 public class ClientServiceImpl implements ClientService {

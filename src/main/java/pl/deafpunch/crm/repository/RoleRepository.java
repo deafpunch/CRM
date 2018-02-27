@@ -1,9 +1,9 @@
-package pl.amelco.crm.repository;
+package pl.deafpunch.crm.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import pl.amelco.crm.entity.Role;
+import pl.deafpunch.crm.entity.Role;
 
 @Repository("roleRepository")
 public interface RoleRepository extends JpaRepository<Role, Long> {

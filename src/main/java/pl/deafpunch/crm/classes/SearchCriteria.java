@@ -1,4 +1,4 @@
-package pl.amelco.crm.classes;
+package pl.deafpunch.crm.classes;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

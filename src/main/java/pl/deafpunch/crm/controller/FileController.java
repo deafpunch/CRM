@@ -1,4 +1,4 @@
-package pl.amelco.crm.controller;
+package pl.deafpunch.crm.controller;
 
 import java.io.IOException;
 
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import pl.amelco.crm.entity.FileModel;
-import pl.amelco.crm.service.FileModelService;
+import pl.deafpunch.crm.entity.FileModel;
+import pl.deafpunch.crm.service.FileModelService;
 
 @RestController
 public class FileController {

@@ -1,9 +1,9 @@
-package pl.amelco.crm.service;
+package pl.deafpunch.crm.service;
 
 import java.util.List;
 
-import pl.amelco.crm.entity.Client;
-import pl.amelco.crm.entity.CompanySizeEnum;
+import pl.deafpunch.crm.entity.Client;
+import pl.deafpunch.crm.entity.CompanySizeEnum;
 
 public interface ClientService {
 

@@ -1,4 +1,4 @@
-package pl.amelco.crm.controller;
+package pl.deafpunch.crm.controller;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import pl.amelco.crm.classes.SearchCriteria;
-import pl.amelco.crm.entity.Client;
-import pl.amelco.crm.entity.CompanySizeEnum;
-import pl.amelco.crm.entity.User;
-import pl.amelco.crm.repository.ClientRepository;
-import pl.amelco.crm.repository.UserRepository;
-import pl.amelco.crm.service.ClientServiceImpl;
+import pl.deafpunch.crm.classes.SearchCriteria;
+import pl.deafpunch.crm.entity.Client;
+import pl.deafpunch.crm.entity.CompanySizeEnum;
+import pl.deafpunch.crm.entity.User;
+import pl.deafpunch.crm.repository.ClientRepository;
+import pl.deafpunch.crm.repository.UserRepository;
+import pl.deafpunch.crm.service.ClientServiceImpl;
 
 @Controller
 @RequestMapping(path="/dashboard/client/search")

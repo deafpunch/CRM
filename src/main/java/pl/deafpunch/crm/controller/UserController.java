@@ -1,4 +1,4 @@
-package pl.amelco.crm.controller;
+package pl.deafpunch.crm.controller;
 
 import javax.servlet.http.HttpSession;
 
@@ -8,9 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import pl.amelco.crm.entity.User;
-import pl.amelco.crm.repository.UserRepository;
-import pl.amelco.crm.service.UserServiceImpl;
+import pl.deafpunch.crm.entity.User;
+import pl.deafpunch.crm.repository.UserRepository;
+import pl.deafpunch.crm.service.UserServiceImpl;
 
 @Controller
 public class UserController {

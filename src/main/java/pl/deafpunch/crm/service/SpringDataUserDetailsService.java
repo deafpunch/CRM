@@ -1,4 +1,4 @@
-package pl.amelco.crm.service;
+package pl.deafpunch.crm.service;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,9 +10,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import pl.amelco.crm.controller.MainController;
-import pl.amelco.crm.entity.Role;
-import pl.amelco.crm.entity.User;
+import pl.deafpunch.crm.controller.MainController;
+import pl.deafpunch.crm.entity.Role;
+import pl.deafpunch.crm.entity.User;
 
 
 public class SpringDataUserDetailsService implements UserDetailsService {

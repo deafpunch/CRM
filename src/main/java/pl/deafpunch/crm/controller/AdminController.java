@@ -1,4 +1,4 @@
-package pl.amelco.crm.controller;
+package pl.deafpunch.crm.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import pl.amelco.crm.entity.Role;
-import pl.amelco.crm.entity.User;
-import pl.amelco.crm.repository.RoleRepository;
-import pl.amelco.crm.repository.UserRepository;
-import pl.amelco.crm.service.UserServiceImpl;
+import pl.deafpunch.crm.entity.Role;
+import pl.deafpunch.crm.entity.User;
+import pl.deafpunch.crm.repository.RoleRepository;
+import pl.deafpunch.crm.repository.UserRepository;
+import pl.deafpunch.crm.service.UserServiceImpl;
 
 @Controller
 @RequestMapping("/admin")

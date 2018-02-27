@@ -1,10 +1,10 @@
-package pl.amelco.crm.repository;
+package pl.deafpunch.crm.repository;
 
 import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
 
-import pl.amelco.crm.entity.FileModel;
+import pl.deafpunch.crm.entity.FileModel;
 
 public interface FileModelRepository extends CrudRepository<FileModel, Long> {
     

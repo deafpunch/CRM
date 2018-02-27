@@ -1,9 +1,9 @@
-package pl.amelco.crm.repository;
+package pl.deafpunch.crm.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import pl.amelco.crm.entity.User;
+import pl.deafpunch.crm.entity.User;
 
 @Repository("userRepository")
 public interface UserRepository extends JpaRepository<User, Long> {

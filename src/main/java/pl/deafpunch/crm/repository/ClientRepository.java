@@ -1,4 +1,4 @@
-package pl.amelco.crm.repository;
+package pl.deafpunch.crm.repository;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import pl.amelco.crm.entity.Client;
-import pl.amelco.crm.entity.CompanySizeEnum;
+import pl.deafpunch.crm.entity.Client;
+import pl.deafpunch.crm.entity.CompanySizeEnum;
 
 @Repository("clientRepository")
 public interface ClientRepository extends JpaRepository<Client, Long> {

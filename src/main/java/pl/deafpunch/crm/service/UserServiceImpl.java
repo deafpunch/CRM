@@ -1,4 +1,4 @@
-package pl.amelco.crm.service;
+package pl.deafpunch.crm.service;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -8,10 +8,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import pl.amelco.crm.entity.Role;
-import pl.amelco.crm.entity.User;
-import pl.amelco.crm.repository.RoleRepository;
-import pl.amelco.crm.repository.UserRepository;
+import pl.deafpunch.crm.entity.Role;
+import pl.deafpunch.crm.entity.User;
+import pl.deafpunch.crm.repository.RoleRepository;
+import pl.deafpunch.crm.repository.UserRepository;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -78,5 +78,10 @@ public class UserServiceImpl implements UserService {
 			userToSave.setRoles(user.getRoles());
 		}
 		userRepository.saveAndFlush(userToSave);
+	}
+
+	@Override
+	public User findById(Long id) {
+		return userRepository.findById(id);
 	}
 }

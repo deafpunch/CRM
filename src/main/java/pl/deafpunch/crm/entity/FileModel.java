@@ -1,4 +1,4 @@
-package pl.amelco.crm.entity;
+package pl.deafpunch.crm.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
