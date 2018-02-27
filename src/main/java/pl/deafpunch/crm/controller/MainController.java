@@ -29,7 +29,7 @@ public class MainController {
 	
 	@GetMapping(path="/login")
 	public String getLandingPage() {
-		return "gentelella_forms/login";	}
+		return "login";	}
 
 	/**
 	 *  Shows main dashboard for logged in user

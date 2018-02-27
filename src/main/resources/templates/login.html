@@ -10,17 +10,19 @@
     <title>Simple CRM Project by deafpunch | </title>
     
     <!-- Bootstrap -->
-    <link href="/Simple_CRM_Project/src/main/resources/static/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"></link>
+    <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     
     <!-- Font Awesome -->
-    <link href="/Simple_CRM_Project/src/main/resources/static/gentelella/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"></link>
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
     <!-- NProgress -->
-    <link href="/Simple_CRM_Project/src/main/resources/static/gentelella/vendors/nprogress/nprogress.css" rel="stylesheet" type="text/css"></link>
+    <link href="vendors/nprogress/nprogress.css" rel="stylesheet"/>
     <!-- Animate.css -->
-    <link href="/Simple_CRM_Project/src/main/resources/static/gentelella/vendors/animate.css/animate.min.css" rel="stylesheet" type="text/css"></link>
+    <link href="vendors/animate.css/animate.min.css" rel="stylesheet"/>
 
     <!-- Custom Theme Style -->
-    <link href="/Simple_CRM_Project/src/main/resources/static/gentelella/build/css/custom.min.css" rel="stylesheet" type="text/css"></link>
+    <link href="build/css/custom.min.css" rel="stylesheet"/> 
+    
+
     
   </head>
 
@@ -34,6 +36,7 @@
           <section class="login_content">
             <form name="f" th:action="@{/login}" method="post">
               <h1>Simple CRM</h1>
+              <a th:href="@{/gentelella/vendors/font-awesome/css/font-awesome.min.css}">LINK TEST</a>
               <div>
                 <input type="text" class="form-control" placeholder="Username" required="" />
               </div>
