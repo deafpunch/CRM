@@ -10,17 +10,17 @@
     <title>Simple CRM Project by deafpunch | </title>
     
     <!-- Bootstrap -->
-    <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     
     <!-- Font Awesome -->
-    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/gentelella/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <!-- NProgress -->
-    <link href="vendors/nprogress/nprogress.css" rel="stylesheet"/>
+    <link href="/gentelella/vendors/nprogress/nprogress.css" rel="stylesheet" type="text/css"/>
     <!-- Animate.css -->
-    <link href="vendors/animate.css/animate.min.css" rel="stylesheet"/>
+    <link href="/gentelella/vendors/animate.css/animate.min.css" rel="stylesheet" type="text/css"/>
 
     <!-- Custom Theme Style -->
-    <link href="build/css/custom.min.css" rel="stylesheet"/> 
+    <link href="/gentelella/build/css/custom.min.css" rel="stylesheet" type="text/css"/> 
     
 
     
@@ -36,12 +36,11 @@
           <section class="login_content">
             <form name="f" th:action="@{/login}" method="post">
               <h1>Simple CRM</h1>
-              <a th:href="@{/gentelella/vendors/font-awesome/css/font-awesome.min.css}">LINK TEST</a>
               <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
+                <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="" />
               </div>
               <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
+                <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="" />
               </div>
               <div>
               	<input type="submit" class="btn btn-default submit" value="Log in"/>
