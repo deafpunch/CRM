@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import pl.deafpunch.crm.classes.CompanySizeEnum;
 import pl.deafpunch.crm.entity.Client;
-import pl.deafpunch.crm.entity.CompanySizeEnum;
 
 @Repository("clientRepository")
 public interface ClientRepository extends JpaRepository<Client, Long> {
@@ -16,14 +16,12 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 	List<Client> findByOwnerId(Long id);
 	
 	Client findById(Long id);
-
-//	SELECT * FROM crm.clients WHERE client_name LIKE "%omp%";
 	
 	@Query(value="SELECT c FROM clients c WHERE c.clientName LIKE %?1%" )
 	List<Client> findByClientsName(String clientName);
 	
-	@Query(value="SELECT c FROM clients c WHERE c.address LIKE %?1%" )
-	List<Client> findByClientsAddress(String address);
+//	@Query(value="SELECT c FROM clients c WHERE c.address LIKE %?1%" )
+//	List<Client> findByClientsAddress(String address);
 	
 	@Query(value="SELECT c FROM clients c WHERE c.companySize = ?1" )
 	List<Client> findByClientsCompanySize(CompanySizeEnum size);

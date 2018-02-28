@@ -11,19 +11,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import pl.deafpunch.crm.classes.CompanySizeEnum;
 
 @Entity(name = "clients")
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
 public class Client {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,8 +28,9 @@ public class Client {
 	@Column(nullable = false, unique = true)
 	private String clientName;
 
-	@NotEmpty
-	private String address;
+	@ManyToOne
+	@JoinColumn(name="clientAddress_id")
+	private ClientAddress address;
 
 	@Enumerated(EnumType.STRING)
 	private CompanySizeEnum companySize;
@@ -52,10 +47,90 @@ public class Client {
 	@JoinColumn(name = "user_id")
 	private User user;	
 	
-	@OneToOne
-	private FileModel filemodel;
-	
 	private String notes;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+
+	public String getClientName() {
+		return clientName;
+	}
+
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
+	}
+
+	public CompanySizeEnum getCompanySize() {
+		return companySize;
+	}
+
+	public void setCompanySize(CompanySizeEnum companySize) {
+		this.companySize = companySize;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
+	public Client(Long id, Date created, String clientName, CompanySizeEnum companySize, String phoneNumber,
+			String email, User user, String notes) {
+		super();
+		this.id = id;
+		this.created = created;
+		this.clientName = clientName;
+		this.companySize = companySize;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+		this.user = user;
+		this.notes = notes;
+	}
+
+	public Client() {
+		super();
+	}
+	
+	
 	
 
 }

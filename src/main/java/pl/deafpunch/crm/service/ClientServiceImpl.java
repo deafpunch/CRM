@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import pl.deafpunch.crm.classes.CompanySizeEnum;
 import pl.deafpunch.crm.entity.Client;
-import pl.deafpunch.crm.entity.CompanySizeEnum;
 import pl.deafpunch.crm.repository.ClientRepository;
 
 @Service("clientService")
@@ -34,8 +34,9 @@ public class ClientServiceImpl implements ClientService {
 
 	@Override
 	public List<Client> getClientsByAddress(String address) {
-		List<Client> clients = clientRepository.findByClientsAddress(address);
-		return clients;
+//		List<Client> clients = clientRepository.findByClientsAddress(address);
+//		return clients;
+		return null;
 	}
 
 	@Override
@@ -83,19 +84,19 @@ public class ClientServiceImpl implements ClientService {
 	public Client updateClient(Client client) {
 		Client clientToSave = (Client) clientRepository.findByClientsName(client.getClientName());
 		
-		if (!clientToSave.getClientName().equals(client.getClientName())) {
-			clientToSave.setClientName(client.getClientName());
-		}else if (!clientToSave.getAddress().equals(client.getAddress())) {
-			clientToSave.setAddress(client.getAddress());
-		}else if (!clientToSave.getCompanySize().equals(client.getCompanySize())) {
-			clientToSave.setCompanySize(client.getCompanySize());
-		}else if (!clientToSave.getPhoneNumber().equals(client.getPhoneNumber())) {
-			clientToSave.setPhoneNumber(client.getPhoneNumber());
-		}else if (!clientToSave.getEmail().equals(client.getEmail())) {
-			clientToSave.setEmail(client.getEmail());
-		}else if(!clientToSave.getNotes().equals(client.getNotes())) {
-			clientToSave.setNotes(client.getNotes());
-		}
+//		if (!clientToSave.getClientName().equals(client.getClientName())) {
+//			clientToSave.setClientName(client.getClientName());
+//		}else if (!clientToSave.getAddress().equals(client.getAddress())) {
+//			clientToSave.setAddress(client.getAddress());
+//		}else if (!clientToSave.getCompanySize().equals(client.getCompanySize())) {
+//			clientToSave.setCompanySize(client.getCompanySize());
+//		}else if (!clientToSave.getPhoneNumber().equals(client.getPhoneNumber())) {
+//			clientToSave.setPhoneNumber(client.getPhoneNumber());
+//		}else if (!clientToSave.getEmail().equals(client.getEmail())) {
+//			clientToSave.setEmail(client.getEmail());
+//		}else if(!clientToSave.getNotes().equals(client.getNotes())) {
+//			clientToSave.setNotes(client.getNotes());
+//		}
 		
 		clientRepository.saveAndFlush(clientToSave);
 		return clientToSave;

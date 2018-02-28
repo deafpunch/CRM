@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import pl.deafpunch.crm.classes.CompanySizeEnum;
 import pl.deafpunch.crm.classes.SearchCriteria;
 import pl.deafpunch.crm.entity.Client;
-import pl.deafpunch.crm.entity.CompanySizeEnum;
 import pl.deafpunch.crm.entity.User;
 import pl.deafpunch.crm.repository.ClientRepository;
 import pl.deafpunch.crm.repository.UserRepository;

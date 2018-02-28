@@ -1,4 +1,4 @@
-package pl.deafpunch.crm.entity;
+package pl.deafpunch.crm.classes;
 
 public enum CompanySizeEnum {
 	

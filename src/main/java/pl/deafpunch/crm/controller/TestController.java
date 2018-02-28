@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import pl.deafpunch.crm.entity.User;
 import pl.deafpunch.crm.repository.UserRepository;
-import pl.deafpunch.crm.service.FileModelService;
 import pl.deafpunch.crm.service.UserServiceImpl;
 
 @Controller
@@ -24,9 +23,7 @@ public class TestController {
 	
 	@Autowired
 	UserServiceImpl userServiceImpl;
-	
-	@Autowired
-	FileModelService fileModelService;
+
 	
 	
 	/*
