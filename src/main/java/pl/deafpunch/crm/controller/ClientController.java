@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import pl.deafpunch.crm.classes.CompanySizeEnum;
 import pl.deafpunch.crm.entity.Client;
+import pl.deafpunch.crm.entity.ClientAddress;
+import pl.deafpunch.crm.entity.ClientNote;
 import pl.deafpunch.crm.entity.User;
 import pl.deafpunch.crm.repository.ClientRepository;
 import pl.deafpunch.crm.repository.UserRepository;
@@ -56,6 +58,8 @@ public class ClientController {
 	@GetMapping(path="/addclient")
 	public String addNewClientGet(@ModelAttribute Client client, Model model) {
 		getCompanySizeList(model);
+		model.addAttribute("clientAddress", new ClientAddress());
+		model.addAttribute("clientNote", new ClientNote());
 		return "client/addClient";
 	}
 	
