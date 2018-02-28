@@ -3,6 +3,8 @@ package pl.deafpunch.crm.service;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -26,13 +28,16 @@ public class SpringDataUserDetailsService implements UserDetailsService {
 	
 	@Autowired
 	MainController mainController;
+	
+	@Autowired
+	HttpSession sess;
 
 	/**
 	 * Standard Spring Security method to check for user roles.
 	 * Method is equipped with extra mechanism to check if user is deactivated. If so, it is moving to login page.
+	 * Also adding to session both = logged in user model and username as separated value.
 	 */
 	
-	@Override
 	public UserDetails loadUserByUsername(String username) {
 		User user = userService.findByUsername(username);
 		if (user == null) {
@@ -44,7 +49,10 @@ public class SpringDataUserDetailsService implements UserDetailsService {
 			Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 			for (Role role : user.getRoles()) {
 				grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
-			}
+			}			
+			sess.setAttribute("loggedInUser", user);
+			sess.setAttribute("username", user.getUsername());
+			
 			return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
 					grantedAuthorities);
 		}
