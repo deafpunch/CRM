@@ -197,10 +197,21 @@
                     <form id="demo-form" data-parsley-validate action="#" th:action="@{/client/addclient}" method="post">
                       <label for="fullname">Client's company name * :</label>
                       <input type="text" id="fullname" th:field="*{client.clientName}" class="form-control" name="fullname" required />
+                      
+                      <label for="contactPerson">Contact person * :</label>
+                      <input type="text" id="contactPerson" th:field="*{client.contactPerson}" class="form-control" name="fullname" required />
 
                       <label for="email">Email * :</label>
                       <input type="email" id="email" th:field="*{client.email}" class="form-control" name="email" data-parsley-trigger="change" required />
-
+						
+						<h4><b>Address:</b> </h4>
+					  <label for="streetName">Street * :</label>
+                      <input type="email" id="streetName" th:field="*{client.address.street}" class="form-control" name="streetName" data-parsley-trigger="change" required />
+					  <label for="streetNumber">Building number * :</label>
+                      <input type="email" id="streetNumber" th:field="*{client.address.streetNumber}" class="form-control" name="streetNumber" data-parsley-trigger="change" required />
+					
+					  	
+						
                       <label>Gender *:</label>
                       <p>
                         M:

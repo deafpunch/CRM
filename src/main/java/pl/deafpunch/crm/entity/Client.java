@@ -31,6 +31,8 @@ public class Client {
 
 	@Column(nullable = false, unique = true)
 	private String clientName;
+	
+	private String contactPerson;
 
 	@ManyToOne
 	@JoinColumn(name="clientAddress_id")
