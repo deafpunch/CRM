@@ -1,8 +1,6 @@
 package pl.deafpunch.crm.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,7 +8,6 @@ import javax.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.deafpunch.crm.classes.RegionEnum;
 
 @Entity(name = "clientAddress")
 @NoArgsConstructor
@@ -30,8 +27,7 @@ public class ClientAddress {
 	
 	private String postalCode;
 	
-	@Enumerated(EnumType.STRING)
-	private RegionEnum region;
+	private String region;
 	
 	
 }

@@ -24,6 +24,11 @@ public enum RegionEnum {
     RegionEnum(String region) {
         this.name = region;
     }
+    
+    @Override 
+    public String toString(){ 
+        return name; 
+    } 
 
     public String region() {
         return name;
