@@ -14,12 +14,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import pl.deafpunch.crm.classes.CompanySizeEnum;
+import pl.deafpunch.crm.classes.RegionEnum;
 import pl.deafpunch.crm.entity.Client;
 import pl.deafpunch.crm.entity.ClientAddress;
 import pl.deafpunch.crm.entity.ClientNote;
 import pl.deafpunch.crm.entity.User;
+import pl.deafpunch.crm.repository.ClientAddressRepository;
+import pl.deafpunch.crm.repository.ClientNoteRepository;
 import pl.deafpunch.crm.repository.ClientRepository;
 import pl.deafpunch.crm.repository.UserRepository;
 import pl.deafpunch.crm.service.UserServiceImpl;
@@ -37,15 +41,23 @@ public class ClientController {
 	@Autowired
 	UserRepository userRepository;
 	
+	@Autowired
+	ClientAddressRepository clientAddressRepository;
+	
+	@Autowired
+	ClientNoteRepository clientNoteRepository;
+	
 	/**
 	 * Adding model attribute to GET.method filled with list of possible company sizes according to CompanysizeEnum values; 
 	 * @param model
 	 */
 	
 	@ModelAttribute
-	public void getCompanySizeList(Model model) {
+	public void getAllVocabularyLists(Model model) {
 		List<CompanySizeEnum> sizes = Arrays.asList(CompanySizeEnum.values());
 		model.addAttribute("sizes", sizes);
+		List<RegionEnum> regions = Arrays.asList(RegionEnum.values());
+		model.addAttribute("regions", regions);
 	}
 	
 	/**
@@ -57,9 +69,10 @@ public class ClientController {
 	
 	@GetMapping(path="/addclient")
 	public String addNewClientGet(@ModelAttribute Client client, Model model) {
-		getCompanySizeList(model);
+		getAllVocabularyLists(model);
 		model.addAttribute("clientAddress", new ClientAddress());
 		model.addAttribute("clientNote", new ClientNote());
+//		model.addAttribute("regions", new Region)
 		return "client/addClient";
 	}
 	
@@ -73,14 +86,18 @@ public class ClientController {
 	 */
 	
 	@PostMapping(path="/addclient")
-	public String addNewClientPost(Client client, HttpSession sess, Principal principal, Model model) {
+	@ResponseBody
+	public String addNewClientPost(Client client, ClientNote clientNote, ClientAddress clientAddress, HttpSession sess, Principal principal, Model model) {
 		User user = userServiceImpl.findByUsername(principal.getName());
 		client.setUser(user);
+//		clientAddressRepository.saveAndFlush(clientAddress);
+//		clientNoteRepository.saveAndFlush(clientNote);
 		clientRepository.save(client);
-		model.addAttribute("message", new String("New customer has been added successfully!"));
-		List<Client> clients = clientRepository.findAll();
-		model.addAttribute("clients", clients);
-		return "client/clientsList";
+//		model.addAttribute("message", new String("New customer has been added successfully!"));
+//		List<Client> clients = clientRepository.findAll();
+//		model.addAttribute("clients", clients);
+//		return "client/clientsList";
+		return "success!!";
 	}
 	
 	@GetMapping(path="/clientslist")
@@ -103,7 +120,7 @@ public class ClientController {
 		Client client = new Client();
 		client = clientRepository.findById(id);
 		model.addAttribute("client", client);
-		getCompanySizeList(model);
+		getAllVocabularyLists(model);
 		return "client/clientEdit";
 	}
 	
@@ -115,7 +132,7 @@ public class ClientController {
 		String message = "Changes were saved!";
 		model.addAttribute("message", message);
 		model.addAttribute("client", client);
-		getCompanySizeList(model);
+		getAllVocabularyLists(model);
 		return "client/clientDetails";
 	}
 	

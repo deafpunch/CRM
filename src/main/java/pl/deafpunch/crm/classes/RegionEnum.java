@@ -1,6 +1,6 @@
 package pl.deafpunch.crm.classes;
 
-public enum Region {
+public enum RegionEnum {
 
 	DOLNOSLASKIE("woj.dolnośląskie"),
 	KUJAWSKO_POMORSKIE("woj.kujawsko-pomorskie"),
@@ -21,7 +21,7 @@ public enum Region {
 	
 	private String name;
 
-    Region(String region) {
+    RegionEnum(String region) {
         this.name = region;
     }
 

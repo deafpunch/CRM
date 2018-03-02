@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.deafpunch.crm.classes.Region;
+import pl.deafpunch.crm.classes.RegionEnum;
 
 @Entity(name = "clientAddress")
 @NoArgsConstructor
@@ -31,7 +31,7 @@ public class ClientAddress {
 	private String postalCode;
 	
 	@Enumerated(EnumType.STRING)
-	private Region region;
+	private RegionEnum region;
 	
 	
 }

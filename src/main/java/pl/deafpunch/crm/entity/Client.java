@@ -3,6 +3,7 @@ package pl.deafpunch.crm.entity;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -34,7 +35,7 @@ public class Client {
 	
 	private String contactPerson;
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="clientAddress_id")
 	private ClientAddress address;
 
@@ -53,7 +54,7 @@ public class Client {
 	@JoinColumn(name = "user_id")
 	private User user;	
 	
-	@OneToMany(mappedBy = "client")
+	@OneToMany(mappedBy = "client", cascade=CascadeType.ALL)
 	private Set<ClientNote> notes;
 
 

@@ -200,55 +200,52 @@
                       
                       <label for="contactPerson">Contact person * :</label>
                       <input type="text" id="contactPerson" th:field="*{client.contactPerson}" class="form-control" name="fullname" required />
-
+					  
+					  <label for="telephone">Telephone <span class="required">*</span></label>
+                   
+                        
+                          <input type="tel" th:field="*{client.phoneNumber}" id="telephone" name="telephone" required="required" data-validate-length-range="8,20" class="form-control">
+                      
+					  
                       <label for="email">Email * :</label>
                       <input type="email" id="email" th:field="*{client.email}" class="form-control" name="email" data-parsley-trigger="change" required />
-						
+						<br>
 						<h4><b>Address:</b> </h4>
 					  <label for="streetName">Street * :</label>
-                      <input type="email" id="streetName" th:field="*{client.address.street}" class="form-control" name="streetName" data-parsley-trigger="change" required />
+                      <input type="text" id="streetName" th:field="*{client.address.street}" class="form-control" name="streetName" data-parsley-trigger="change" required />
+					  
 					  <label for="streetNumber">Building number * :</label>
-                      <input type="email" id="streetNumber" th:field="*{client.address.streetNumber}" class="form-control" name="streetNumber" data-parsley-trigger="change" required />
+                      <input type="text" id="streetNumber" th:field="*{client.address.streetNumber}" class="form-control" name="streetNumber" data-parsley-trigger="change" required />
 					
-					  	
+					<label for="city">City * :</label>
+                      <input type="text" id="city" th:field="*{client.address.city}" class="form-control" name="city" data-parsley-trigger="change" required />
+					
+					  <label for="postalCode">Post code:</label>
+                      <input type="text" id="postalCode" th:field="*{client.address.postalCode}" class="form-control" name="postalCode" data-parsley-trigger="change"/>	
 						
-                      <label>Gender *:</label>
-                      <p>
-                        M:
-                        <input type="radio" class="flat" name="gender" id="genderM" value="M" checked="" required /> F:
-                        <input type="radio" class="flat" name="gender" id="genderF" value="F" />
-                      </p>
-
-                      <label>Hobbies (2 minimum):</label>
-                      <p style="padding: 5px;">
-                        <input type="checkbox" name="hobbies[]" id="hobby1" value="ski" data-parsley-mincheck="2" required class="flat" /> Skiing
-                        <br />
-
-                        <input type="checkbox" name="hobbies[]" id="hobby2" value="run" class="flat" /> Running
-                        <br />
-
-                        <input type="checkbox" name="hobbies[]" id="hobby3" value="eat" class="flat" /> Eating
-                        <br />
-
-                        <input type="checkbox" name="hobbies[]" id="hobby4" value="sleep" class="flat" /> Sleeping
-                        <br />
-                        <p>
-
-                          <label for="heard">Heard us by *:</label>
-                          <select id="heard" class="form-control" required>
-                            <option value="">Choose..</option>
-                            <option value="press">Press</option>
-                            <option value="net">Internet</option>
-                            <option value="mouth">Word of mouth</option>
-                          </select>
-
-                          <label for="message">Message (20 chars min, 100 max) :</label>
-                          <textarea id="message" required="required" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
+						<label for="region">Region(*) :</label>
+			    	  <select th:field="*{client.address.region}" class="form-control" data-parsley-trigger="change" required>
+			  		  <option th:each="r : ${regions}" 
+			            		th:value="${r}" 
+			            		th:text="${r}">Company region</option>
+					  </select>	
+						
+						
+					  <label for="companySize">Company size(*) :</label>
+			    	  <select th:field="*{client.companySize}" class="form-control" data-parsley-trigger="change" required>
+			  		  <option th:each="size : ${sizes}" 
+			            		th:value="${size}" 
+			            		th:text="${size}">Company size</option>
+					  </select>
+					  <br>	
+					  <h4><b>First note: </b> </h4>
+                      <label for="message">Note (min. 20 characters long) :</label>
+                          <textarea id="message" th:field="*{clientNote.content}"  required="required" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-minlength-message="Come on! You need to enter at least a 20 characters long comment.."
                             data-parsley-validation-threshold="10"></textarea>
 
                           <br/>
                           <span class="btn btn-primary">Validate form</span>
-
+						<span><input type="submit" value="Register new client!" class="btn btn-primary"/></span>
                     </form>
                     <!-- end form for validations -->
 
