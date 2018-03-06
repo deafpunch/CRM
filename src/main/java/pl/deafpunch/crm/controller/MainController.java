@@ -2,8 +2,8 @@ package pl.deafpunch.crm.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -12,18 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import pl.deafpunch.crm.repository.UserRepository;
-import pl.deafpunch.crm.service.UserServiceImpl;
+import pl.deafpunch.crm.entity.User;
 
 @Controller
 public class MainController {
 
-	@Autowired
-	UserServiceImpl userServiceImpl;
-	
-	@Autowired
-	UserRepository userRepository;
-	
 	/**
 	 *  @return Login page view
 	 */
@@ -55,6 +48,10 @@ public class MainController {
 	@GetMapping(path="/index")
 	public String index() {
 		return "index";
-
+	}
+	
+	public void setLoggedInUserIntoSession(HttpSession sess, User user) {
+		sess.setAttribute("loggedInUser", user);
+		sess.setAttribute("userID", user.getId());
 	}
 }

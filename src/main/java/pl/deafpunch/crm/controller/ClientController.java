@@ -72,7 +72,6 @@ public class ClientController {
 		getAllVocabularyLists(model);
 		model.addAttribute("clientAddress", new ClientAddress());
 		model.addAttribute("clientNote", new ClientNote());
-//		model.addAttribute("regions", new Region)
 		return "client/addClient";
 	}
 	
@@ -86,17 +85,10 @@ public class ClientController {
 	 */
 	
 	@PostMapping(path="/addclient")
-	@ResponseBody
-	public String addNewClientPost(Client client, ClientNote clientNote, ClientAddress clientAddress, HttpSession sess, Principal principal, Model model) {
-		User user = userServiceImpl.findByUsername(principal.getName());
+	public String addNewClientPost(Client client, HttpSession sess) {
+		User user = userServiceImpl.findById((long)sess.getAttribute("userID"));
 		client.setUser(user);
-//		clientAddressRepository.saveAndFlush(clientAddress);
-//		clientNoteRepository.saveAndFlush(clientNote);
 		clientRepository.save(client);
-//		model.addAttribute("message", new String("New customer has been added successfully!"));
-//		List<Client> clients = clientRepository.findAll();
-//		model.addAttribute("clients", clients);
-//		return "client/clientsList";
 		return "success!!";
 	}
 	
