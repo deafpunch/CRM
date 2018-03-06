@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import pl.deafpunch.crm.classes.CompanySizeEnum;
 import pl.deafpunch.crm.classes.RegionEnum;
@@ -26,6 +25,7 @@ import pl.deafpunch.crm.repository.ClientAddressRepository;
 import pl.deafpunch.crm.repository.ClientNoteRepository;
 import pl.deafpunch.crm.repository.ClientRepository;
 import pl.deafpunch.crm.repository.UserRepository;
+import pl.deafpunch.crm.service.ClientServiceImpl;
 import pl.deafpunch.crm.service.UserServiceImpl;
 
 @Controller
@@ -34,6 +34,9 @@ public class ClientController {
 	
 	@Autowired
 	ClientRepository clientRepository;
+	
+	@Autowired
+	ClientServiceImpl clientServiceImpl;
 	
 	@Autowired
 	UserServiceImpl userServiceImpl;
@@ -85,11 +88,12 @@ public class ClientController {
 	 */
 	
 	@PostMapping(path="/addclient")
-	public String addNewClientPost(Client client, HttpSession sess) {
+	public String addNewClientPost(Client client, HttpSession sess, Model model) {
 		User user = userServiceImpl.findById((long)sess.getAttribute("userID"));
 		client.setUser(user);
-		clientRepository.save(client);
-		return "success!!";
+		client = clientRepository.save(client);
+		model.addAttribute("client", client);
+		return "client/clientDetails";
 	}
 	
 	@GetMapping(path="/clientslist")

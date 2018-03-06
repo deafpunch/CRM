@@ -9,17 +9,17 @@ public interface ClientService {
 
 	public void saveClient(Client client);
 	
-	public List<Client> getClientsByOwner(Long id);
+	public List<Client> findClientsByOwner(Long id);
 	
-	public List<Client> getClientsByClientname(String clientName);
+	public List<Client> findClientsByClientname(String clientName);
 	
-	public List<Client> getClientsByAddress(String address);
+	public List<Client> findClientsByAddress(String address);
 	
-	public List<Client> getClientsByCompanySize(CompanySizeEnum size);
+	public List<Client> findClientsByCompanySize(CompanySizeEnum size);
 	
-	public List<Client> getClientsByPhoneNumber(String phoneNumber);
+	public List<Client> findClientsByPhoneNumber(String phoneNumber);
 	
-	public List<Client> getClientsByEmailAddress(String email);
+	public List<Client> findClientsByEmailAddress(String email);
 	
 	public boolean checkIfClientExist(Client client);
 	

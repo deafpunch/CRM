@@ -79,7 +79,7 @@ public class ClientSearchController {
 	@PostMapping(path="/byrecordowner")
 	public String searchByClientOwner(SearchCriteria searchCriteria, Model model) {
 		Long id = Long.parseLong(searchCriteria.getCriterion());
-		List<Client> clients = clientServiceImpl.getClientsByOwner(id);
+		List<Client> clients = clientServiceImpl.findClientsByOwner(id);
 
 		model.addAttribute("clients", clients);
 		passMessageToView(("Search result for username: " + searchCriteria.getCriterion()), model);
@@ -96,7 +96,7 @@ public class ClientSearchController {
 	@PostMapping(path="/byclientname")
 	public String searchByClientName(SearchCriteria searchCriteria, Model model) {
 		String criterion = searchCriteria.getCriterion();
-		List<Client> clients = clientServiceImpl.getClientsByClientname(criterion);
+		List<Client> clients = clientServiceImpl.findClientsByClientname(criterion);
 		model.addAttribute("clients", clients);
 		passMessageToView(("Search results for given word: " + criterion), model);
 		return "client/searchResult";
@@ -125,7 +125,7 @@ public class ClientSearchController {
 	
 	@PostMapping(path="/byaddress")
 	public String searchByClientAddress(SearchCriteria searchCriteria, Model model) {
-		List<Client> clients = clientServiceImpl.getClientsByAddress(searchCriteria.getCriterion());
+		List<Client> clients = clientServiceImpl.findClientsByAddress(searchCriteria.getCriterion());
 		model.addAttribute("clients", clients);
 		passMessageToView(("Search results for client with given address: " + searchCriteria.getCriterion()), model);
 		return "client/searchResult";
@@ -141,7 +141,7 @@ public class ClientSearchController {
 	@PostMapping(path="/bycompanysize")
 	public String searchByClientCompanySize(SearchCriteria searchCriteria, Model model) {
 		String criterion = searchCriteria.getCriterion();
-		List<Client> clients = clientServiceImpl.getClientsByCompanySize(CompanySizeEnum.valueOf(criterion));
+		List<Client> clients = clientServiceImpl.findClientsByCompanySize(CompanySizeEnum.valueOf(criterion));
 		model.addAttribute("clients", clients);
 		passMessageToView(("Search results for client with given company size: " + searchCriteria.getCriterion()), model);
 		return "client/searchResult";
@@ -156,7 +156,7 @@ public class ClientSearchController {
 	
 	@PostMapping(path="/byphonenumber")
 	public String searchByClientPhoneNumber(SearchCriteria searchCriteria, Model model) {
-		List<Client> clients = clientServiceImpl.getClientsByPhoneNumber(searchCriteria.getCriterion());
+		List<Client> clients = clientServiceImpl.findClientsByPhoneNumber(searchCriteria.getCriterion());
 		model.addAttribute("clients", clients);
 		passMessageToView(("Search results for client with given phone number: " + searchCriteria.getCriterion()), model);
 		return "client/searchResult";
@@ -171,7 +171,7 @@ public class ClientSearchController {
 	
 	@PostMapping(path="/byemail")
 	public String searchByClientEmailAddress(SearchCriteria searchCriteria, Model model) {
-		List<Client> clients = clientServiceImpl.getClientsByEmailAddress(searchCriteria.getCriterion());
+		List<Client> clients = clientServiceImpl.findClientsByEmailAddress(searchCriteria.getCriterion());
 		model.addAttribute("clients", clients);
 		passMessageToView(("Search results for client with given email address: " + searchCriteria.getCriterion()), model);
 		return "client/searchResult";

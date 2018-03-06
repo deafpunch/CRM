@@ -21,38 +21,38 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	@Override
-	public List<Client> getClientsByOwner(Long id) {
+	public List<Client> findClientsByOwner(Long id) {
 		List<Client> clients = clientRepository.findByOwnerId(id);
 		return clients;
 	}
 
 	@Override
-	public List<Client> getClientsByClientname(String clientName) {
+	public List<Client> findClientsByClientname(String clientName) {
 		List<Client> clients = clientRepository.findByClientsName(clientName);		
 		return clients;
 	}
 
 	@Override
-	public List<Client> getClientsByAddress(String address) {
+	public List<Client> findClientsByAddress(String address) {
 //		List<Client> clients = clientRepository.findByClientsAddress(address);
 //		return clients;
 		return null;
 	}
 
 	@Override
-	public List<Client> getClientsByCompanySize(CompanySizeEnum size) {
+	public List<Client> findClientsByCompanySize(CompanySizeEnum size) {
 		List<Client> clients = clientRepository.findByClientsCompanySize(size);
 		return clients;
 	}
 
 	@Override
-	public List<Client> getClientsByPhoneNumber(String phoneNumber) {
+	public List<Client> findClientsByPhoneNumber(String phoneNumber) {
 		List<Client> clients = clientRepository.findByClientsPhoneNumber(phoneNumber);
 		return clients;
 	}
 
 	@Override
-	public List<Client> getClientsByEmailAddress(String email) {
+	public List<Client> findClientsByEmailAddress(String email) {
 		List<Client> clients = clientRepository.findByEmail(email);
 		return clients;
 	}
