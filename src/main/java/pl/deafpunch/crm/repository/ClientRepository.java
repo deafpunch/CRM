@@ -20,9 +20,6 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 	@Query(value="SELECT c FROM clients c WHERE c.clientName LIKE %?1%" )
 	List<Client> findByClientsName(String clientName);
 	
-//	@Query(value="SELECT c FROM clients c WHERE c.address LIKE %?1%" )
-//	List<Client> findByClientsAddress(String address);
-	
 	@Query(value="SELECT c FROM clients c WHERE c.companySize = ?1" )
 	List<Client> findByClientsCompanySize(CompanySizeEnum size);
 	

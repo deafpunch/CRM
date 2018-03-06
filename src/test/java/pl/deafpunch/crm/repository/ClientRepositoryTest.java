@@ -14,6 +14,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import pl.deafpunch.crm.classes.CompanySizeEnum;
 import pl.deafpunch.crm.entity.Client;
 import pl.deafpunch.crm.entity.User;
 
@@ -70,6 +71,78 @@ public class ClientRepositoryTest {
 		assertNotNull(result);
 		assertEquals(list, result);
 	}
+	
+	@Test
+	public void when_search_client_by_company_size_then_return_clients_list() {
+		//given
+		CompanySizeEnum size = CompanySizeEnum.MEDIUM;
+		Client clientA = new Client();
+		clientA.setClientName("TestName1");
+		clientA.setEmail("client@mail.com");
+		clientA.setPhoneNumber("123123123");
+		clientA.setCompanySize(size);
+		Client clientB = new Client();
+		clientB.setClientName("TestName2");
+		clientB.setEmail("client@mail.net");
+		clientB.setPhoneNumber("111222333");
+		clientB.setCompanySize(size);
+		entityManager.persist(clientA);
+		entityManager.persist(clientB);
+		List<Client> list = new ArrayList<>();
+		list.add(clientA);
+		list.add(clientB);
+		//when
+		List<Client> result = clientRepository.findByClientsCompanySize(size);
+		//then
+		assertNotNull(result);
+		assertEquals(list, result);
+	}
+	
+	@Test
+	public void when_search_client_by_phone_then_return_clients_list() {
+		//given
+		Client clientA = new Client();
+		clientA.setClientName("TestName1");
+		clientA.setEmail("client@mail.com");
+		clientA.setPhoneNumber("123144423123");
+		Client clientB = new Client();
+		clientB.setClientName("TestName2");
+		clientB.setEmail("client@mail.net");
+		clientB.setPhoneNumber("111244422333");
+		entityManager.persist(clientA);
+		entityManager.persist(clientB);
+		List<Client> list = new ArrayList<>();
+		list.add(clientA);
+		list.add(clientB);
+		//when
+		List<Client> result = clientRepository.findByClientsPhoneNumber("444");
+		//then
+		assertNotNull(result);
+		assertEquals(list, result);
+	}
+	
+	@Test
+	public void when_search_client_by_email_then_return_clients_list() {
+		//given
+		Client clientA = new Client();
+		clientA.setClientName("TestName1");
+		clientA.setEmail("client@mail.com");
+		clientA.setPhoneNumber("123144423123");
+		Client clientB = new Client();
+		clientB.setClientName("TestName2");
+		clientB.setEmail("client@mail.com");
+		clientB.setPhoneNumber("111244422333");
+		entityManager.persist(clientA);
+		entityManager.persist(clientB);
+		List<Client> list = new ArrayList<>();
+		list.add(clientA);
+		list.add(clientB);
+		//when
+		List<Client> result = clientRepository.findByEmail("client@mail.com");
+		//then
+		assertNotNull(result);
+		assertEquals(list, result);
+	}	
 	
 	
 

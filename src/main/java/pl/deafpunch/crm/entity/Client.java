@@ -47,7 +47,7 @@ public class Client {
 
 	@NotEmpty
 	@Email
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false)
 	private String email;
 
 	@ManyToOne
