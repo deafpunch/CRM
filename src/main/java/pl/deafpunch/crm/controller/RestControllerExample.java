@@ -56,7 +56,7 @@ public class RestControllerExample {
 
 	@GetMapping(path = "/{id}/user")
 	public ResponseEntity<User> getUserByID(@PathVariable Long id) {
-		User user = userRepository.findById(id);
+		User user = userRepository.findOneById(id);
 
 		if (user == null) {
 			return new ResponseEntity<>(user, HttpStatus.NOT_FOUND);
@@ -72,7 +72,7 @@ public class RestControllerExample {
 	
 	@GetMapping(path = "/{id}/client")
 	public ResponseEntity<Client> getClientByID(@PathVariable Long id) {
-		Client client = clientRepository.findById(id);
+		Client client = clientRepository.findOneById(id);
 
 		if (client == null) {
 			return new ResponseEntity<>(client, HttpStatus.NOT_FOUND);

@@ -86,7 +86,7 @@ public class AdminController {
 	
 	@GetMapping(path="/user/settings/{id}/details")
 	public String manageUser(@PathVariable Long id, Model model) {
-		User user = userRepository.findById(id);
+		User user = userRepository.findOneById(id);
 		model.addAttribute("user", user);
 		putRolesListToModel(model);
 		return "admin/userSettings";

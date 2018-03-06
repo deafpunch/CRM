@@ -56,9 +56,9 @@ public class UserServiceImpl implements UserService {
 
 		if (!user.getId()
 				.equals(sessionUserID)) {
-			userToSave = userRepository.findById(user.getId());
+			userToSave = userRepository.findOneById(user.getId());
 		} else {
-			userToSave = userRepository.findById(sessionUserID);
+			userToSave = userRepository.findOneById(sessionUserID);
 		}
 
 		if (!user.getEnabled().equals(userToSave.getEnabled())) {
@@ -82,6 +82,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User findById(Long id) {
-		return userRepository.findById(id);
+		return userRepository.findOneById(id);
 	}
 }

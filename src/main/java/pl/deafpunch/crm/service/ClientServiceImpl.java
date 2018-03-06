@@ -9,7 +9,7 @@ import pl.deafpunch.crm.classes.CompanySizeEnum;
 import pl.deafpunch.crm.entity.Client;
 import pl.deafpunch.crm.repository.ClientRepository;
 
-@Service("clientService")
+@Service
 public class ClientServiceImpl implements ClientService {
 
 	@Autowired

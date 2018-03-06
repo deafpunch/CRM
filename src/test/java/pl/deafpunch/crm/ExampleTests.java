@@ -2,16 +2,20 @@ package pl.deafpunch.crm;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -22,11 +26,11 @@ import pl.deafpunch.crm.entity.User;
 import pl.deafpunch.crm.repository.ClientRepository;
 import pl.deafpunch.crm.repository.UserRepository;
 import pl.deafpunch.crm.service.ClientServiceImpl;
-import pl.deafpunch.crm.service.UserService;
 import pl.deafpunch.crm.service.UserServiceImpl;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
+@SpringBootTest
 public class ExampleTests {
 
 	@Mock
@@ -54,18 +58,7 @@ public class ExampleTests {
 		assertTrue(clientServiceImpl.checkIfClientExist(client));		
 	}
 	
-//	@Test
-//	public void when_searching_user_id_then_return_user_object() {
-//		User userA = new User();
-//		userA.setId((long) 1);
-//		when(userRepository.findById((long)1)).thenReturn(userA);
-//		User userB = userServiceImpl.findById((long)1);
-////		User userB = new User();
-////		userB.setId((long)1);
-//		System.out.println("UserA: " + userA);
-//		System.out.println("UserB: " + userB);
-//		assertEquals(userB.getId(), userA.getId());
-//	}
+
 	
 	@Test
 	public void when_save_user_then_it_is_returned_correctly() {

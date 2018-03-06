@@ -110,7 +110,7 @@ public class ClientController {
 	@GetMapping(path="/client/{id}/details")
 	public String showClientDetails(@PathVariable Long id, Model model) {
 		Client client = new Client();
-		client = clientRepository.findById(id);
+		client = clientRepository.findOneById(id);
 		model.addAttribute("client", client);
 		return "client/clientDetails";
 	}
@@ -118,7 +118,7 @@ public class ClientController {
 	@GetMapping(path="/client/{id}/edit")
 	public String editClientDetails(@PathVariable Long id, Model model) {
 		Client client = new Client();
-		client = clientRepository.findById(id);
+		client = clientRepository.findOneById(id);
 		model.addAttribute("client", client);
 		getAllVocabularyLists(model);
 		return "client/clientEdit";
@@ -138,7 +138,7 @@ public class ClientController {
 	
 	@GetMapping(path="/client/{id}/delete")
 	public String deleteClient(@PathVariable Long id, Model model) {
-		Client client = clientRepository.findById(id);
+		Client client = clientRepository.findOneById(id);
 		clientRepository.delete(client);
 		model.addAttribute("message", new String("Record has been deleted!"));
 		List<Client> clients = clientRepository.findAll();
@@ -148,7 +148,7 @@ public class ClientController {
 	
 	@GetMapping(path="/client/{id}/copy")
 	public String copyClientToNewRecord(@PathVariable Long id, Model model, Principal principal) {
-		Client client = clientRepository.findById(id);
+		Client client = clientRepository.findOneById(id);
 		client.setId(null);
 		client.setClientName(null);
 		client.setEmail(null);

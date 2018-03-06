@@ -32,7 +32,7 @@ public class UserController {
 	
 	@GetMapping(path="/settings")
 	public String userSettings(HttpSession sess, Model model) {
-		User user = userRepository.findById((Long)sess.getAttribute("userID"));
+		User user = userRepository.findOneById((Long)sess.getAttribute("userID"));
 		model.addAttribute("user", user);
 		return "user/userSettings";
 	}

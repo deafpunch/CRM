@@ -111,7 +111,7 @@ public class ClientSearchController {
 	
 	@PostMapping(path="/byid")
 	public String searchByClientId(SearchCriteria searchCriteria, Model model) {
-		Client client = clientRepository.findById(Long.parseLong(searchCriteria.getCriterion()));
+		Client client = clientRepository.findOneById(Long.parseLong(searchCriteria.getCriterion()));
 		model.addAttribute("client", client);
 		return "client/clientDetails";
 	}

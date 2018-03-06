@@ -8,8 +8,8 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>CRM_Amelco</name>
-	<description>Final project for Amelco</description>
+	<name>Simple CRM Project</name>
+	<description>First CRM project by deafpunch</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
