@@ -42,8 +42,7 @@ public class AdminController {
 	
 	@GetMapping(path="/createuser")
 	public String createUser(@ModelAttribute User user, Model model) {
-		List<Role> roles = new ArrayList<>();
-		roles = roleRepository.findAll();
+		List<Role> roles = roleRepository.findAll();
 		model.addAttribute("roles", roles);
 		return "user/addUser";
 	}
