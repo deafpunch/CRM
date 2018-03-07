@@ -59,9 +59,21 @@ public class AdminController {
 		userServiceImpl.saveUser(user);
 		List<User> users = userRepository.findAll();
 		model.addAttribute("users", users);
-		model.addAttribute("message", "User created!");
+//		model.addAttribute("message", "User created!");
 		return "admin/allUsers";
 	}
+	
+	@GetMapping(path="/{id}/changestatus")
+	public String changeUserStatus(@PathVariable Long id) {
+		User user = userServiceImpl.findById(id);
+		if (user.getEnabled() == true) {
+			user.setEnabled(false);
+		}else {
+			user.setEnabled(true);
+		}
+		return "forward:/admin/allusers";		
+	}
+	
 	
 	/**
 	 * Passing to view list of all registered users
