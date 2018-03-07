@@ -71,7 +71,8 @@ public class AdminController {
 		}else {
 			user.setEnabled(true);
 		}
-		return "forward:/admin/allusers";		
+		userServiceImpl.saveUser(user);
+		return "redirect:/admin/allusers";		
 	}
 	
 	

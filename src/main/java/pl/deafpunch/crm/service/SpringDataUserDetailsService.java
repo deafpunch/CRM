@@ -51,8 +51,6 @@ public class SpringDataUserDetailsService implements UserDetailsService {
 				grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
 			}			
 			mainController.setLoggedInUserIntoSession(sess, user);
-//			sess.setAttribute("loggedInUser", user);
-//			sess.setAttribute("userID", user.getId());
 			
 			return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
 					grantedAuthorities);

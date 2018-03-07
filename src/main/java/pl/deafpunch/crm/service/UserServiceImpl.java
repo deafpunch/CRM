@@ -1,30 +1,22 @@
 package pl.deafpunch.crm.service;
 
-import java.util.Arrays;
-import java.util.HashSet;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import pl.deafpunch.crm.entity.Role;
 import pl.deafpunch.crm.entity.User;
-import pl.deafpunch.crm.repository.RoleRepository;
 import pl.deafpunch.crm.repository.UserRepository;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
 	private final UserRepository userRepository;
-	private final RoleRepository roleRepository;
 	private final BCryptPasswordEncoder passwordEncoder;
 
-	public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository,
-			BCryptPasswordEncoder passwordEncoder) {
+	public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
 		this.passwordEncoder = passwordEncoder;
 		this.userRepository = userRepository;
-		this.roleRepository = roleRepository;
 	}
 
 	@Override
@@ -39,8 +31,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void saveUser(User user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		Role userRole = roleRepository.findByName("ROLE_USER");
-		user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
 		userRepository.save(user);
 	}
 
